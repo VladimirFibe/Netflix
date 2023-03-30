@@ -1,7 +1,6 @@
 import UIKit
 
 class HomeViewController: UIViewController {
-
     let sectionTitles = ["Trending Movies", "Trending TV", "Popular", "Upcoming Movies", "Top rated"]
     private let homeFeedTable: UITableView = {
         let table = UITableView(frame: .zero, style: .grouped)
@@ -19,6 +18,9 @@ class HomeViewController: UIViewController {
         homeFeedTable.dataSource = self
         let headerView = HeroHeaderView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 450))
         homeFeedTable.tableHeaderView = headerView
+        APICaller.shared.getTrendingMovies { text in
+            
+        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -27,7 +29,7 @@ class HomeViewController: UIViewController {
     }
     
     private func configureNavBar() {
-        var image = #imageLiteral(resourceName: "netflixLogo").withRenderingMode(.alwaysOriginal)
+        let image = #imageLiteral(resourceName: "netflixLogo").withRenderingMode(.alwaysOriginal)
         navigationController?.navigationBar.tintColor = .label
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: image, style: .done, target: self, action: nil)
         navigationItem.rightBarButtonItems = [
