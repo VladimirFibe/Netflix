@@ -18,8 +18,13 @@ class HomeViewController: UIViewController {
         homeFeedTable.dataSource = self
         let headerView = HeroHeaderView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 450))
         homeFeedTable.tableHeaderView = headerView
-        APICaller.shared.getTrendingMovies { text in
-            
+        APICaller.shared.getTrendingMovies { result in
+            switch result {
+            case .success(let movies):
+                if let title = movies.first?.title { print(title)}
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
         }
     }
     

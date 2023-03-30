@@ -13,21 +13,21 @@ struct TrendingMoviewsResponse: Codable {
 }
 
 struct Movie: Codable {
-    let adult: Bool
-    let backdropPath: String
-    let id: Int
+    let adult: Bool?
+    let backdropPath: String?
+    let id: Int?
     let title: String?
-    let originalLanguage: OriginalLanguage?
+//    let originalLanguage: OriginalLanguage?
     let originalTitle: String?
     let overview: String?
     let posterPath: String?
-    let mediaType: MediaType?
-    let genreIDS: [Int]
-    let popularity: Double
+//    let mediaType: MediaType?
+    let genreIDS: [Int]?
+    let popularity: Double?
     let releaseDate: String?
     let video: Bool?
-    let voteAverage: Double
-    let voteCount: Int
+    let voteAverage: Double?
+    let voteCount: Int?
     let name, originalName, firstAirDate: String?
     let originCountry: [String]?
 
@@ -35,11 +35,11 @@ struct Movie: Codable {
         case adult
         case backdropPath = "backdrop_path"
         case id, title
-        case originalLanguage = "original_language"
+//        case originalLanguage = "original_language"
         case originalTitle = "original_title"
         case overview
         case posterPath = "poster_path"
-        case mediaType = "media_type"
+//        case mediaType = "media_type"
         case genreIDS = "genre_ids"
         case popularity
         case releaseDate = "release_date"

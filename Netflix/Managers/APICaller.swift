@@ -5,20 +5,29 @@ struct Constant {
     static let baseURL = "https://api.themoviedb.org"
 }
 
+enum APIError: Error {
+    case fail
+}
 final class APICaller {
     static let shared = APICaller()
     private init() {}
     
-    func getTrendingMovies(completion: @escaping (String) -> Void) {
-        guard let url = URL(string: "\(Constant.baseURL)/3/trending/all/day?api_key=\(Constant.API_Key)")
+    func getTrendingMovies(completion: @escaping (Result<[Movie], Error>) -> Void) {
+//        guard let url = URL(string: "\(Constant.baseURL)/3/trending/all/day?api_key=\(Constant.API_Key)")
+
+        guard let url = URL(string: "\(Constant.baseURL)/3/trending/movie/day?api_key=\(Constant.API_Key)")
         else { return }
         let task = URLSession.shared.dataTask(with: URLRequest(url: url)) { data, _, error in
-            guard let data = data, error == nil else { return }
+            guard let data = data, error == nil else {
+                completion(.failure(APIError.fail))
+                return
+            }
+//            print(String(data: data, encoding: .utf8))
             do {
-                let results = try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed)
-                print(results)
+                let response = try JSONDecoder().decode(TrendingMoviewsResponse.self, from: data)
+                completion(.success(response.results))
             } catch {
-                print(error.localizedDescription)
+                completion(.failure(error))
             }
         }
         task.resume()
