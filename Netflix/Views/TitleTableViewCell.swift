@@ -53,6 +53,6 @@ class TitleTableViewCell: UITableViewCell {
     
     func configure(with title: TitleViewModel) {
         posterImageView.sd_setImage(with: URL(string: "https://image.tmdb.org/t/p/w500/\(title.poster)"))
-        titleLabel.text = title.title
+        titleLabel.text = title.name
     }
 }

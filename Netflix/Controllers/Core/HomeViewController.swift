@@ -8,7 +8,9 @@ enum Sections: Int {
     case top
 }
 class HomeViewController: UIViewController {
-    let randomTrendingMoview: Title?
+//    private var randomTrendingMovie: Title?
+    private var headerView: HeroHeaderView?
+    
     let sectionTitles = ["Trending Movies", "Trending TV", "Popular", "Upcoming Movies", "Top rated"]
     private let homeFeedTable: UITableView = {
         let table = UITableView(frame: .zero, style: .grouped)
@@ -24,11 +26,27 @@ class HomeViewController: UIViewController {
         configureNavBar()
         homeFeedTable.delegate = self
         homeFeedTable.dataSource = self
-        let headerView = HeroHeaderView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 450))
+        headerView = HeroHeaderView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 500))
         homeFeedTable.tableHeaderView = headerView
-        
+        configureHeroHeaderView()
     }
     
+    private func configureHeroHeaderView() {
+
+        APICaller.shared.getTrendingMovies { [weak self] result in
+            switch result {
+            case .success(let titles):
+                if let selectedTitle = titles.randomElement() {
+//                    self?.randomTrendingMovie = selectedTitle
+                    self?.headerView?.configure(with: TitleViewModel(title: selectedTitle))
+                }
+                
+            case .failure(let erorr):
+                print(erorr.localizedDescription)
+            }
+        }
+    }
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         homeFeedTable.frame = view.bounds

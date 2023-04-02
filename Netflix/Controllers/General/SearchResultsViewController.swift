@@ -1,7 +1,13 @@
 import UIKit
 
+protocol SearchResultsViewControllerDelegate: AnyObject {
+    func didTapItem(_ viewModel: TitlePreviewViewModel)
+}
+
 class SearchResultsViewController: UIViewController {
 
+    public weak var delegate: SearchResultsViewControllerDelegate?
+    
     public var titles: [Title] = [] {
         didSet { collectionView.reloadData()}
     }
@@ -42,5 +48,18 @@ extension SearchResultsViewController: UICollectionViewDataSource, UICollectionV
         return cell
     }
     
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
+        let title = titles[indexPath.item]
+        guard let name = title.original_name ?? title.original_title else { return }
+        APICaller.shared.getMovie(with: name) {[weak self] result in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let video): self.delegate?.didTapItem(TitlePreviewViewModel(title: title, video: video))
+                case .failure(let error): print(error.localizedDescription)
+                }
+            }
+        }
+    }
 }

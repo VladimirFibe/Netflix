@@ -1,10 +1,3 @@
-//
-//  HeroHeaderView.swift
-//  Netflix
-//
-//  Created by Vladimir on 30.03.2023.
-//
-
 import UIKit
 
 class HeroHeaderView: UIView {
@@ -71,5 +64,11 @@ class HeroHeaderView: UIView {
         ]
         NSLayoutConstraint.activate(playButtonConstraints)
         NSLayoutConstraint.activate(downloadButtonConstraints)
+    }
+    
+    public func configure(with model: TitleViewModel) {
+        guard let url = URL(string: "https://image.tmdb.org/t/p/w500/\(model.poster)")
+        else { return }
+        heroImageView.sd_setImage(with: url, completed: nil)
     }
 }
