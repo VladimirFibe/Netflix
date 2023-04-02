@@ -1,6 +1,14 @@
 import UIKit
 
+enum Sections: Int {
+    case movies
+    case tv
+    case pupular
+    case upcoming
+    case top
+}
 class HomeViewController: UIViewController {
+    let randomTrendingMoview: Title?
     let sectionTitles = ["Trending Movies", "Trending TV", "Popular", "Upcoming Movies", "Top rated"]
     private let homeFeedTable: UITableView = {
         let table = UITableView(frame: .zero, style: .grouped)
@@ -18,14 +26,7 @@ class HomeViewController: UIViewController {
         homeFeedTable.dataSource = self
         let headerView = HeroHeaderView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 450))
         homeFeedTable.tableHeaderView = headerView
-        APICaller.shared.getTrendingMovies { result in
-            switch result {
-            case .success(let movies):
-                if let title = movies.first?.title { print(title)}
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
-        }
+        
     }
     
     override func viewDidLayoutSubviews() {
@@ -61,6 +62,46 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CollectionViewTableViewCell.identifier, for: indexPath) as? CollectionViewTableViewCell else {
             return UITableViewCell()
         }
+        cell.delegate = self
+        if let section = Sections(rawValue: indexPath.section) {
+            switch section {
+            case .movies:
+                APICaller.shared.getTrendingMovies { result in
+                    switch result {
+                    case .success(let titles): cell.configure(with: titles)
+                    case .failure(let error): print(error.localizedDescription)
+                    }
+                }
+            case .tv:
+                APICaller.shared.getTrendingTvs { result in
+                    switch result {
+                    case .success(let titles): cell.configure(with: titles)
+                    case .failure(let error): print(error.localizedDescription)
+                    }
+                }
+            case .pupular:
+                APICaller.shared.getPopular { result in
+                    switch result {
+                    case .success(let titles): cell.configure(with: titles)
+                    case .failure(let error): print(error.localizedDescription)
+                    }
+                }
+            case .upcoming:
+                APICaller.shared.getUpcomingMovies { result in
+                    switch result {
+                    case .success(let titles): cell.configure(with: titles)
+                    case .failure(let error): print(error.localizedDescription)
+                    }
+                }
+            case .top:
+                APICaller.shared.getTopRated { result in
+                    switch result {
+                    case .success(let titles): cell.configure(with: titles)
+                    case .failure(let error): print(error.localizedDescription)
+                    }
+                }
+            }
+        }
         return cell
     }
     
@@ -87,5 +128,13 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         let defaultOffset = view.safeAreaInsets.top
         let offset = scrollView.contentOffset.y + defaultOffset
         navigationController?.navigationBar.transform = .init(translationX: 0, y: min(0, -offset))
+    }
+}
+
+extension HomeViewController: CollectionViewTableViewCellDelegate {
+    func didTapCell(_ cell: CollectionViewTableViewCell, viewModel: TitlePreviewViewModel) {
+        let controller = TitlePreviewViewController()
+        controller.configure(with: viewModel)
+        navigationController?.pushViewController(controller, animated: true)
     }
 }
