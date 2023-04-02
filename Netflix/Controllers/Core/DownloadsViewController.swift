@@ -17,6 +17,9 @@ class DownloadsViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationItem.largeTitleDisplayMode = .always
         fetchLocalStorageForDownload()
+        NotificationCenter.default.addObserver(forName: NSNotification.Name("downloaded"), object: nil, queue: nil) { _ in
+            self.fetchLocalStorageForDownload()
+        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -54,5 +57,44 @@ extension DownloadsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 140
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        let item = items[indexPath.row]
+        switch editingStyle {
+        case .delete:
+            DataPersistenceManager.shared.deleteTitleWith(model: item) {[weak self] result in
+                switch result {
+                case .success():
+                    self?.items.remove(at: indexPath.row)
+                    tableView.deleteRows(at: [indexPath], with: .fade)
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+        default:
+            break
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let item = items[indexPath.row]
+        guard let titleName = item.original_title ?? item.original_name else {
+            return
+        }
+        APICaller.shared.getMovie(with: titleName) { [weak self] result in
+            switch result {
+            case .success(let video):
+                DispatchQueue.main.async {
+                    let controller = TitlePreviewViewController()
+                    controller.configure(with: TitlePreviewViewModel(item: item, video: video))
+                    self?.navigationController?.pushViewController(controller, animated: true)
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
     }
 }

@@ -10,4 +10,10 @@ struct TitlePreviewViewModel {
         overview = title.overview ?? "no overview"
         youtube = "https://www.youtube.com/embed/\(video.id.videoId)"
     }
+    
+    init(item: TitleItem, video: VideoElement) {
+        self.title = (item.original_name ?? item.original_title) ?? "no name"
+        overview = item.overview ?? "no overview"
+        youtube = "https://www.youtube.com/embed/\(video.id.videoId)"
+    }
 }
