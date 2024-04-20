@@ -7,6 +7,7 @@ enum Sections: Int {
     case upcoming
     case top
 }
+
 class HomeViewController: UIViewController {
 //    private var randomTrendingMovie: Title?
     private var headerView: HeroHeaderView?

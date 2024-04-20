@@ -1,4 +1,5 @@
 import UIKit
+import Kingfisher
 
 class TitleTableViewCell: UITableViewCell {
     static let identifier = "TitleTableViewCell"
@@ -52,7 +53,8 @@ class TitleTableViewCell: UITableViewCell {
     }
     
     func configure(with title: TitleViewModel) {
-        posterImageView.sd_setImage(with: URL(string: "https://image.tmdb.org/t/p/w500/\(title.poster)"))
+        let url = URL(string: "https://image.tmdb.org/t/p/w500/\(title.poster)")
+        posterImageView.kf.setImage(with: url)
         titleLabel.text = title.name
     }
 }

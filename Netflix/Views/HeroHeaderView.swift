@@ -67,8 +67,7 @@ class HeroHeaderView: UIView {
     }
     
     public func configure(with model: TitleViewModel) {
-        guard let url = URL(string: "https://image.tmdb.org/t/p/w500/\(model.poster)")
-        else { return }
-        heroImageView.sd_setImage(with: url, completed: nil)
+        let url = URL(string: "https://image.tmdb.org/t/p/w500/\(model.poster)")
+        heroImageView.kf.setImage(with: url)
     }
 }

@@ -9,6 +9,11 @@ class MainTabBarViewController: UITabBarController {
         let search = UINavigationController(rootViewController: SearchViewController())
         let downloads = UINavigationController(rootViewController: DownloadsViewController())
         
+        home.tabBarItem = UITabBarItem(title: "Home", image: UIImage(systemName: "house"), tag: 0)
+        upcoming.tabBarItem = UITabBarItem(title: "Coming Soon", image: UIImage(systemName: "play.circle"), tag: 1)
+        search.tabBarItem = UITabBarItem(title: "Top Search", image: UIImage(systemName: "magnifyingglass"), tag: 2)
+        downloads.tabBarItem = UITabBarItem(title: "Downloads", image: UIImage(systemName: "arrow.down.to.line"), tag: 3)
+        
         home.tabBarItem.image = UIImage(systemName: "house")
         upcoming.tabBarItem.image = UIImage(systemName: "play.circle")
         search.tabBarItem.image = UIImage(systemName: "magnifyingglass")
@@ -19,13 +24,7 @@ class MainTabBarViewController: UITabBarController {
         search.title = "Top Search"
         downloads.title = "Downloads"
         
-        home.view.backgroundColor = .systemBackground
-        upcoming.view.backgroundColor = .systemBackground
-        search.view.backgroundColor = .systemBackground
-        downloads.view.backgroundColor = .systemBackground
-        
-        tabBar.tintColor = .label
-        
+        view.backgroundColor = .systemBackground
         setViewControllers([home, upcoming, search, downloads], animated: true)
     }
 }

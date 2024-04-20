@@ -1,5 +1,5 @@
 import UIKit
-import SDWebImage
+import Kingfisher
 
 class TitleCollectionViewCell: UICollectionViewCell {
     static let identifier = "TitleCollectionViewCell"
@@ -24,6 +24,6 @@ class TitleCollectionViewCell: UICollectionViewCell {
     
     public func configure(with model: String) {
         guard let url = URL(string: model) else { return }
-        posterImageView.sd_setImage(with: url)
+        posterImageView.kf.setImage(with: url)
     }
 }
