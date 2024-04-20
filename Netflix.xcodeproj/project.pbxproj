@@ -31,6 +31,7 @@
 		27F7A67729D84B3D0015DE1C /* YoutubeSearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F7A67629D84B3D0015DE1C /* YoutubeSearchResponse.swift */; };
 		27F7A67929D84F7F0015DE1C /* TitleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F7A67829D84F7F0015DE1C /* TitleCollectionViewCell.swift */; };
 		E8100B862BD434CA00F60149 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = E8100B852BD434CA00F60149 /* Kingfisher */; };
+		E8100B8A2BD4383900F60149 /* Secret.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8100B892BD4383900F60149 /* Secret.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +61,7 @@
 		27F7A67429D84B050015DE1C /* Title.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Title.swift; sourceTree = "<group>"; };
 		27F7A67629D84B3D0015DE1C /* YoutubeSearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoutubeSearchResponse.swift; sourceTree = "<group>"; };
 		27F7A67829D84F7F0015DE1C /* TitleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleCollectionViewCell.swift; sourceTree = "<group>"; };
+		E8100B892BD4383900F60149 /* Secret.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Secret.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +144,7 @@
 				27BD365629D4565700A548E6 /* Assets.xcassets */,
 				27BD365829D4565700A548E6 /* LaunchScreen.storyboard */,
 				27BD365B29D4565700A548E6 /* Info.plist */,
+				E8100B892BD4383900F60149 /* Secret.swift */,
 				2754F07E29D975E300C03FFD /* Netflix.xcdatamodeld */,
 			);
 			name = "Supporting Files";
@@ -293,6 +296,7 @@
 				27BD365029D4565500A548E6 /* SceneDelegate.swift in Sources */,
 				2743140329D87FAC00C71725 /* TitleTableViewCell.swift in Sources */,
 				2745302729D91BC500AA9D77 /* TitlePreviewViewModel.swift in Sources */,
+				E8100B8A2BD4383900F60149 /* Secret.swift in Sources */,
 				2754F08029D975E300C03FFD /* Netflix.xcdatamodeld in Sources */,
 				278C57EA29D5AEDF00550D13 /* APICaller.swift in Sources */,
 				27BD366629D459FA00A548E6 /* UpcomingViewController.swift in Sources */,
