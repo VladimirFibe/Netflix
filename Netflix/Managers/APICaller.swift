@@ -1,11 +1,21 @@
 import Foundation
 
 enum APIError: Error {
+    case failedRequest
     case failedTogetData
 }
 final class APICaller {
+    let baseURL = "https://api.themoviedb.org"
     static let shared = APICaller()
     private init() {}
+    
+    func request<Response: Decodable>(_ route: APIRoute) async throws -> Response {
+        guard let request = route.request else { throw APIError.failedRequest }
+        let (data, _) = try await URLSession.shared.data(for: request)
+        guard let result = try? JSONDecoder().decode(Response.self, from: data)
+        else { throw APIError.failedTogetData }
+        return result
+    }
     
     func getTrendingMovies(completion: @escaping (Result<[Title], Error>) -> Void) {
         guard let url = URL(string: "\(Constants.baseURL)/3/trending/movie/day?api_key=\(Constants.API_KEY)") else {return}

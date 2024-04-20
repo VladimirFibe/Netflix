@@ -1,9 +1,19 @@
 import UIKit
 
+
+
+
+
+
+
+
+
+
+
 enum Sections: Int {
     case movies
     case tv
-    case pupular
+    case popular
     case upcoming
     case top
 }
@@ -23,6 +33,15 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let useCase = FetchBrowseSectionsUseCase(apiService: APICaller.shared)
+        Task {
+            do {
+                let browse = try await useCase.execute()
+                print("DEBUG", browse.movies.count)
+            } catch {
+                print("DEBUG", error.localizedDescription)
+            }
+        }
         view.addSubview(homeFeedTable)
         configureNavBar()
         homeFeedTable.delegate = self
@@ -98,7 +117,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
                     case .failure(let error): print(error.localizedDescription)
                     }
                 }
-            case .pupular:
+            case .popular:
                 APICaller.shared.getPopular { result in
                     switch result {
                     case .success(let titles): cell.configure(with: titles)
