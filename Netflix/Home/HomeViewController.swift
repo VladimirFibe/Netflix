@@ -1,16 +1,26 @@
 import UIKit
 
-class HomeViewController: UIViewController {
-    private let store = HomeStore()
-    var bag = Bag()
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .systemBackground
-        store.sendAction(.fetch)
-        setupObservers()
+class HomeViewController: BaseViewController {
+    private let store: HomeStore
+    init(store: HomeStore) {
+        self.store = store
+        super.init(nibName: nil, bundle: nil)
     }
     
-    private func setupObservers() {
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func printTitle(_ title: String) {
+        print(title)
+    }
+}
+// MARK: - Setup Views
+extension HomeViewController {
+    override func setupViews() {
+        store.sendAction(.fetch)
+    }
+    override func setupObservers() {
         store
             .events
             .receive(on: DispatchQueue.main)
@@ -21,9 +31,5 @@ class HomeViewController: UIViewController {
                     self.printTitle(title)
                 }
             }.store(in: &bag)
-    }
-    
-    private func printTitle(_ title: String) {
-        print(title)
     }
 }
