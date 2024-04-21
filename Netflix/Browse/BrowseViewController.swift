@@ -136,7 +136,7 @@ extension UICollectionViewLayout {
                 
                 let categoryGroupSize = NSCollectionLayoutSize(
                     widthDimension: .fractionalWidth(1),
-                    heightDimension: .absolute(450)
+                    heightDimension: .absolute(500)
                 )
                 let categoryGroup = NSCollectionLayoutGroup.horizontal(layoutSize: categoryGroupSize, subitems: [categoryItem])
                 

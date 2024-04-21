@@ -20,7 +20,7 @@ enum Sections: Int {
 
 class HomeViewController: UIViewController {
 //    private var randomTrendingMovie: Title?
-    private var headerView: HeroHeaderView?
+    private var headerView: BrowseHeroCell?
     
     let sectionTitles = ["Trending Movies", "Trending TV", "Popular", "Upcoming Movies", "Top rated"]
     private let homeFeedTable: UITableView = {
@@ -46,7 +46,7 @@ class HomeViewController: UIViewController {
         configureNavBar()
         homeFeedTable.delegate = self
         homeFeedTable.dataSource = self
-        headerView = HeroHeaderView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 500))
+        headerView = BrowseHeroCell(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 500))
         homeFeedTable.tableHeaderView = headerView
         configureHeroHeaderView()
     }
@@ -57,8 +57,7 @@ class HomeViewController: UIViewController {
             switch result {
             case .success(let titles):
                 if let selectedTitle = titles.randomElement() {
-//                    self?.randomTrendingMovie = selectedTitle
-                    self?.headerView?.configure(with: TitleViewModel(title: selectedTitle))
+                    self?.headerView?.configure(with: selectedTitle)
                 }
                 
             case .failure(let erorr):
