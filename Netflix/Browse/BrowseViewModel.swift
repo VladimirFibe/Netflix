@@ -4,28 +4,29 @@ final class BrowseViewModel {
     var browse: Browse? {
         didSet {
             rows = [
+                BrowseRow(index: 0, items: (browse?.hero ?? []).map { .hero($0)}),
                 BrowseRow(
-                    index: 0,
+                    index: 1,
                     title: "Movies",
                     items: (browse?.movies ?? []).map { .movies($0) }
                 ),
                 BrowseRow(
-                    index: 1,
+                    index: 2,
                     title: "TV",
                     items: (browse?.tv ?? []).map { .tv($0) }
                 ),
                 BrowseRow(
-                    index: 2,
+                    index: 3,
                     title: "Popular",
                     items: (browse?.popular ?? []).map { .popular($0) }
                 ),
                 BrowseRow(
-                    index: 3,
+                    index: 4,
                     title: "upcoming",
                     items: (browse?.upcoming ?? []).map { .upcoming($0) }
                 ),
                 BrowseRow(
-                    index: 4,
+                    index: 5,
                     title: "top",
                     items: (browse?.top ?? []).map { .top($0) }
                 )

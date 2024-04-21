@@ -1,7 +1,8 @@
 import Foundation
 
 enum BrowseSection: Int, CaseIterable {
-    case movies = 0
+    case hero = 0
+    case movies
     case tv
     case popular
     case upcoming
