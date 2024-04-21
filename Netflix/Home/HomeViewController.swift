@@ -1,6 +1,7 @@
 import UIKit
 
 class HomeViewController: BaseViewController {
+    var sections: [HomeSection] = []
     private let store: HomeStore
     init(store: HomeStore) {
         self.store = store
@@ -11,8 +12,8 @@ class HomeViewController: BaseViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func printTitle(_ title: String) {
-        print(title)
+    private func reloadData() {
+        print(sections.count)
     }
 }
 // MARK: - Setup Views
@@ -27,8 +28,9 @@ extension HomeViewController {
             .sink { [weak self] event in
                 guard let self = self else { return }
                 switch event {
-                case let .didLoad(title):
-                    self.printTitle(title)
+                case let .didLoad(sections):
+                    self.sections = sections
+                    reloadData()
                 }
             }.store(in: &bag)
     }

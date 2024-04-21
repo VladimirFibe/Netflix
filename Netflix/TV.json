@@ -1,0 +1,452 @@
+[
+    {
+        "backdrop_path": "/5C3UcPKVcg3rwGBYPE18wXpZMw8.jpg",
+        "id": 106379,
+        "original_name": "Fallout",
+        "overview": "The story of haves and have-nots in a world in which there’s almost nothing left to have. 200 years after the apocalypse, the gentle denizens of luxury fallout shelters are forced to return to the irradiated hellscape their ancestors left behind — and are shocked to discover an incredibly complex, gleefully weird, and highly violent universe waiting for them.",
+        "poster_path": "/AnsSKR9LuK0T9bAOcPVA3PUvyWj.jpg",
+        "media_type": "tv",
+        "adult": false,
+        "name": "Fallout",
+        "original_language": "en",
+        "genre_ids": [
+            10759,
+            10765,
+            9648
+        ],
+        "popularity": 2162.955,
+        "first_air_date": "2024-04-10",
+        "vote_average": 8.453,
+        "vote_count": 518,
+        "origin_country": [
+            "US"
+        ]
+    },
+    {
+        "backdrop_path": "/5zmiBoMzeeVdQ62no55JOJMY498.jpg",
+        "id": 126308,
+        "original_name": "Shōgun",
+        "overview": "In Japan in the year 1600, at the dawn of a century-defining civil war, Lord Yoshii Toranaga is fighting for his life as his enemies on the Council of Regents unite against him, when a mysterious European ship is found marooned in a nearby fishing village.",
+        "poster_path": "/7O4iVfOMQmdCSxhOg1WnzG1AgYT.jpg",
+        "media_type": "tv",
+        "adult": false,
+        "name": "Shōgun",
+        "original_language": "en",
+        "genre_ids": [
+            18,
+            10768
+        ],
+        "popularity": 1061.842,
+        "first_air_date": "2024-02-27",
+        "vote_average": 8.685,
+        "vote_count": 471,
+        "origin_country": [
+            "US"
+        ]
+    },
+    {
+        "backdrop_path": "/2rmK7mnchw9Xr3XdiTFSxTTLXqv.jpg",
+        "id": 37854,
+        "original_name": "ワンピース",
+        "overview": "Years ago, the fearsome Pirate King, Gol D. Roger was executed leaving a huge pile of treasure and the famous \"One Piece\" behind. Whoever claims the \"One Piece\" will be named the new King of the Pirates.\n\nMonkey D. Luffy, a boy who consumed a \"Devil Fruit,\" decides to follow in the footsteps of his idol, the pirate Shanks, and find the One Piece. It helps, of course, that his body has the properties of rubber and that he's surrounded by a bevy of skilled fighters and thieves to help him along the way.\n\nLuffy will do anything to get the One Piece and become King of the Pirates!",
+        "poster_path": "/cMD9Ygz11zjJzAovURpO75Qg7rT.jpg",
+        "media_type": "tv",
+        "adult": false,
+        "name": "One Piece",
+        "original_language": "ja",
+        "genre_ids": [
+            10759,
+            35,
+            16
+        ],
+        "popularity": 246.411,
+        "first_air_date": "1999-10-20",
+        "vote_average": 8.732,
+        "vote_count": 4406,
+        "origin_country": [
+            "JP"
+        ]
+    },
+    {
+        "backdrop_path": "/gzryDyEMkhtAYNlVRiMG1nriNdd.jpg",
+        "id": 138492,
+        "original_name": "The Spiderwick Chronicles",
+        "overview": "The coming-of-age story of the Grace Family, as they move from New York to Michigan and into their family’s ancestral home. Upon arrival, the family not only uncovers mysteries hidden inside their great grandfather’s Spiderwick Estate, but also discovers a secret, fantastical world around them.",
+        "poster_path": "/ic5Hs6zYcM4YUuxyezFUAFQie39.jpg",
+        "media_type": "tv",
+        "adult": false,
+        "name": "The Spiderwick Chronicles",
+        "original_language": "en",
+        "genre_ids": [
+            10759
+        ],
+        "popularity": 148.363,
+        "first_air_date": "2024-04-19",
+        "vote_average": 9.3,
+        "vote_count": 6,
+        "origin_country": [
+            "US"
+        ]
+    },
+    {
+        "backdrop_path": "/xzjZDyqUobuJtkBljhgLH4Fdnye.jpg",
+        "id": 82684,
+        "original_name": "転生したらスライムだった件",
+        "overview": "37-year-old corporate worker Mikami Satoru is stabbed by a random killer, and is reborn to an alternate world. But he turns out to be reborn a slime! Thrown into this new world with the name Rimuru Tempest, he begins his quest to create a world that’s welcoming to all races. Broken free from ordinary, stale past life, his fresh adventure in a fantasy world as a slime monster with unique abilities begins.",
+        "poster_path": "/jQb1ztdko9qc4aCdnMXShcIHXRG.jpg",
+        "media_type": "tv",
+        "adult": false,
+        "name": "That Time I Got Reincarnated as a Slime",
+        "original_language": "ja",
+        "genre_ids": [
+            10759,
+            16,
+            10765,
+            35
+        ],
+        "popularity": 235.277,
+        "first_air_date": "2018-10-02",
+        "vote_average": 8.511,
+        "vote_count": 703,
+        "origin_country": [
+            "JP"
+        ]
+    },
+    {
+        "backdrop_path": "/9DrORnlwnjt5SeJKcuE5sqOoIdV.jpg",
+        "id": 207468,
+        "original_name": "怪獣８号",
+        "overview": "In a world plagued by creatures known as Kaiju, Kafka Hibino aspired to enlist in The Defense Force. He makes a promise to enlist with his childhood friend, Mina Ashiro. Soon, life takes them in separate ways. While employed cleaning up after Kaiju battles, Kafka meets Reno Ichikawa. Reno's determination to join The Defense Force reawakens Kafka's promise to join Mina and protect humanity.",
+        "poster_path": "/c1T8UHwCaq6JeQYgt4U8ERPGoxN.jpg",
+        "media_type": "tv",
+        "adult": false,
+        "name": "Kaiju No. 8",
+        "original_language": "ja",
+        "genre_ids": [
+            16,
+            10759,
+            10765
+        ],
+        "popularity": 990.357,
+        "first_air_date": "2024-04-13",
+        "vote_average": 8.4,
+        "vote_count": 13,
+        "origin_country": [
+            "JP"
+        ]
+    },
+    {
+        "backdrop_path": "/x3XEQ3Wey8enS7mMjo3eUJp8Myi.jpg",
+        "id": 155533,
+        "original_name": "Manhunt",
+        "overview": "A conspiracy thriller about one of the best known but least understood crimes in history. This is the astonishing story of the hunt for John Wilkes Booth in the aftermath of Abraham Lincoln's assassination—as the fate of the country hangs in the balance.",
+        "poster_path": "/pN5qeqDgCG1Pij7KaEBKLkyjn4A.jpg",
+        "media_type": "tv",
+        "adult": false,
+        "name": "Manhunt",
+        "original_language": "en",
+        "genre_ids": [
+            18,
+            80
+        ],
+        "popularity": 201.14,
+        "first_air_date": "2024-03-14",
+        "vote_average": 7,
+        "vote_count": 18,
+        "origin_country": [
+            "US"
+        ]
+    },
+    {
+        "backdrop_path": "/oc8Hk1NDKKjCz2rQkwlRKo6PUD9.jpg",
+        "id": 216292,
+        "original_name": "수사반장 1958",
+        "overview": "In an era of violence and corruption, Park Yeong-han, a humble detective, joins forces with Sang-sun, Gyeong-hwan and Ho-jeong to uphold justice.",
+        "poster_path": "/3iJPQbGF9MzZQXb5HiUZP43LPz8.jpg",
+        "media_type": "tv",
+        "adult": false,
+        "name": "Chief Detective 1958",
+        "original_language": "ko",
+        "genre_ids": [
+            18,
+            9648
+        ],
+        "popularity": 110.402,
+        "first_air_date": "2024-04-19",
+        "vote_average": 8,
+        "vote_count": 1,
+        "origin_country": [
+            "KR"
+        ]
+    },
+    {
+        "backdrop_path": "/ciizJ9Okzt9tBBGK7Q3T14LFT2j.jpg",
+        "id": 108545,
+        "original_name": "3 Body Problem",
+        "overview": "Across continents and decades, five brilliant friends make earth-shattering discoveries as the laws of science unravel and an existential threat emerges.",
+        "poster_path": "/ykZ7hlShkdRQaL2aiieXdEMmrLb.jpg",
+        "media_type": "tv",
+        "adult": false,
+        "name": "3 Body Problem",
+        "original_language": "en",
+        "genre_ids": [
+            10765,
+            9648,
+            18
+        ],
+        "popularity": 667.918,
+        "first_air_date": "2024-03-21",
+        "vote_average": 7.536,
+        "vote_count": 554,
+        "origin_country": [
+            "US"
+        ]
+    },
+    {
+        "backdrop_path": "/7sV0OgNkPiY9XPzr0f3rATFrGje.jpg",
+        "id": 203744,
+        "original_name": "Sugar",
+        "overview": "An enigmatic private detective struggles with personal demons as he investigates the disappearance of a Hollywood producer's beloved granddaughter.",
+        "poster_path": "/dNrk52Rt13MxwahLneTZJezM6qD.jpg",
+        "media_type": "tv",
+        "adult": false,
+        "name": "Sugar",
+        "original_language": "en",
+        "genre_ids": [
+            18,
+            9648
+        ],
+        "popularity": 342.346,
+        "first_air_date": "2024-04-04",
+        "vote_average": 7.875,
+        "vote_count": 20,
+        "origin_country": [
+            "US"
+        ]
+    },
+    {
+        "backdrop_path": "/dg1Ltwemj13U8FnVKEMZglnc3Nx.jpg",
+        "id": 241259,
+        "original_name": "Baby Reindeer",
+        "overview": "When a struggling comedian shows one act of kindness to a vulnerable woman, it sparks a suffocating obsession which threatens to wreck both their lives.",
+        "poster_path": "/m8WlwwOj0lPb98HywCv5tLqtmf4.jpg",
+        "media_type": "tv",
+        "adult": false,
+        "name": "Baby Reindeer",
+        "original_language": "en",
+        "genre_ids": [
+            18
+        ],
+        "popularity": 566.666,
+        "first_air_date": "2024-04-11",
+        "vote_average": 7.628,
+        "vote_count": 39,
+        "origin_country": [
+            "GB"
+        ]
+    },
+    {
+        "backdrop_path": "/jsXKG9uppnPrhqFNhImllyCfLhl.jpg",
+        "id": 65930,
+        "original_name": "僕のヒーローアカデミア",
+        "overview": "A superhero-admiring boy without any powers enrolls in a prestigious hero academy and learns what it really means to be a hero.",
+        "poster_path": "/qIKNIkxXYIro6JjNIGyqumrVUKL.jpg",
+        "media_type": "tv",
+        "adult": false,
+        "name": "My Hero Academia",
+        "original_language": "ja",
+        "genre_ids": [
+            10759,
+            16,
+            10765
+        ],
+        "popularity": 117.342,
+        "first_air_date": "2016-04-03",
+        "vote_average": 8.6,
+        "vote_count": 4687,
+        "origin_country": [
+            "JP"
+        ]
+    },
+    {
+        "backdrop_path": "/rqbCbjB19amtOtFQbb3K2lgm2zv.jpg",
+        "id": 1429,
+        "original_name": "進撃の巨人",
+        "overview": "Several hundred years ago, humans were nearly exterminated by Titans. Titans are typically several stories tall, seem to have no intelligence, devour human beings and, worst of all, seem to do it for the pleasure rather than as a food source. A small percentage of humanity survived by walling themselves in a city protected by extremely high walls, even taller than the biggest Titans. Flash forward to the present and the city has not seen a Titan in over 100 years. Teenage boy Eren and his foster sister Mikasa witness something horrific as the city walls are destroyed by a Colossal Titan that appears out of thin air. As the smaller Titans flood the city, the two kids watch in horror as their mother is eaten alive. Eren vows that he will murder every single Titan and take revenge for all of mankind.",
+        "poster_path": "/hTP1DtLGFamjfu8WqjnuQdP1n4i.jpg",
+        "media_type": "tv",
+        "adult": false,
+        "name": "Attack on Titan",
+        "original_language": "ja",
+        "genre_ids": [
+            16,
+            10765,
+            10759
+        ],
+        "popularity": 231.076,
+        "first_air_date": "2013-04-07",
+        "vote_average": 8.7,
+        "vote_count": 6012,
+        "origin_country": [
+            "JP"
+        ]
+    },
+    {
+        "backdrop_path": "/9OQ5BIITkJwRJo9JA6AlCfJIGBQ.jpg",
+        "id": 87917,
+        "original_name": "For All Mankind",
+        "overview": "Explore an aspirational world where NASA and the space program remained a priority and a focal point of our hopes and dreams as told through the lives of NASA astronauts, engineers, and their families.",
+        "poster_path": "/mNXT1QjRCEasXGH3rHCTQm0A0Su.jpg",
+        "media_type": "tv",
+        "adult": false,
+        "name": "For All Mankind",
+        "original_language": "en",
+        "genre_ids": [
+            18,
+            10765,
+            10768
+        ],
+        "popularity": 398.897,
+        "first_air_date": "2019-11-01",
+        "vote_average": 7.746,
+        "vote_count": 629,
+        "origin_country": [
+            "US"
+        ]
+    },
+    {
+        "backdrop_path": "/rgUSTFnUJYy98WqL4JpPtvoqDko.jpg",
+        "id": 129398,
+        "original_name": "The Sympathizer",
+        "overview": "An espionage thriller and cross-culture satire about the struggles of a half-French, half-Vietnamese communist spy during the final days of the Vietnam War and his resulting exile in the United States.",
+        "poster_path": "/zAxObqiOEooIuQtH338b8zOaFEu.jpg",
+        "media_type": "tv",
+        "adult": false,
+        "name": "The Sympathizer",
+        "original_language": "en",
+        "genre_ids": [
+            18,
+            35
+        ],
+        "popularity": 546.655,
+        "first_air_date": "2024-04-14",
+        "vote_average": 8.75,
+        "vote_count": 12,
+        "origin_country": [
+            "US"
+        ]
+    },
+    {
+        "backdrop_path": "/wcP3FsRLog4GNEs9PFrDKKQdcof.jpg",
+        "id": 215720,
+        "original_name": "눈물의 여왕",
+        "overview": "The queen of department stores and the prince of supermarkets weather a marital crisis—until love miraculously begins to bloom again.",
+        "poster_path": "/7ZXLZ3KYL3IVvsSHBZaHjcNQzNU.jpg",
+        "media_type": "tv",
+        "adult": false,
+        "name": "Queen of Tears",
+        "original_language": "ko",
+        "genre_ids": [
+            18,
+            35
+        ],
+        "popularity": 540.509,
+        "first_air_date": "2024-03-09",
+        "vote_average": 8.1,
+        "vote_count": 18,
+        "origin_country": [
+            "KR"
+        ]
+    },
+    {
+        "backdrop_path": "/zZqpAXxVSBtxV9qPBcscfXBcL2w.jpg",
+        "id": 1399,
+        "original_name": "Game of Thrones",
+        "overview": "Seven noble families fight for control of the mythical land of Westeros. Friction between the houses leads to full-scale war. All while a very ancient evil awakens in the farthest north. Amidst the war, a neglected military order of misfits, the Night's Watch, is all that stands between the realms of men and icy horrors beyond.",
+        "poster_path": "/1XS1oqL89opfnbLl8WnZY1O1uJx.jpg",
+        "media_type": "tv",
+        "adult": false,
+        "name": "Game of Thrones",
+        "original_language": "en",
+        "genre_ids": [
+            10765,
+            18,
+            10759
+        ],
+        "popularity": 1107.038,
+        "first_air_date": "2011-04-17",
+        "vote_average": 8.448,
+        "vote_count": 23006,
+        "origin_country": [
+            "US"
+        ]
+    },
+    {
+        "backdrop_path": "/p4rJTY1rvQrffoh2P09sty5cz8B.jpg",
+        "id": 208825,
+        "original_name": "기생수: 더 그레이",
+        "overview": "When unidentified parasites violently take over human hosts and gain power, humanity must rise to combat the growing threat.",
+        "poster_path": "/rubaKfmdCvWGPXErgW9aQsgzKVr.jpg",
+        "media_type": "tv",
+        "adult": false,
+        "name": "Parasyte: The Grey",
+        "original_language": "ko",
+        "genre_ids": [
+            10765,
+            10759,
+            18
+        ],
+        "popularity": 435.557,
+        "first_air_date": "2024-04-05",
+        "vote_average": 7.684,
+        "vote_count": 103,
+        "origin_country": [
+            "KR"
+        ]
+    },
+    {
+        "backdrop_path": "/5PCKxpFcCTDFT3b1olJGPaAIM9e.jpg",
+        "id": 206586,
+        "original_name": "The Walking Dead: The Ones Who Live",
+        "overview": "The love story of Rick Grimes and Michonne is changed by a changed world. Kept apart by distance. By an unstoppable power. Can they find each other and who they were in a situation unlike any they've ever known?",
+        "poster_path": "/ywbacot78IuNhGW4uVZPxxxVTkm.jpg",
+        "media_type": "tv",
+        "adult": false,
+        "name": "The Walking Dead: The Ones Who Live",
+        "original_language": "en",
+        "genre_ids": [
+            10765,
+            18
+        ],
+        "popularity": 550.343,
+        "first_air_date": "2024-02-25",
+        "vote_average": 8.307,
+        "vote_count": 274,
+        "origin_country": [
+            "US"
+        ]
+    },
+    {
+        "backdrop_path": "/ovUbhh84qB11B5wzHd01cM07yia.jpg",
+        "id": 138502,
+        "original_name": "X-Men '97",
+        "overview": "The X-Men, a band of mutants who use their uncanny gifts to protect a world that hates and fears them, are challenged like never before, forced to face a dangerous and unexpected new future.",
+        "poster_path": "/9Ycz7yYRf9V4jk3YXwcZhFtbNcF.jpg",
+        "media_type": "tv",
+        "adult": false,
+        "name": "X-Men '97",
+        "original_language": "en",
+        "genre_ids": [
+            16,
+            10759,
+            10765
+        ],
+        "popularity": 838.476,
+        "first_air_date": "2024-03-20",
+        "vote_average": 8.7,
+        "vote_count": 154,
+        "origin_country": [
+            "US"
+        ]
+    }
+]

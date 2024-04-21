@@ -1,7 +1,7 @@
 import Foundation
 
 enum HomeEvent {
-    case didLoad(String)
+    case didLoad([HomeSection])
 }
 
 enum HomeAction {
@@ -26,7 +26,7 @@ final class HomeStore: Store<HomeEvent, HomeAction> {
     }
     
     private func fetch() async throws {
-        let title = try await useCase.execute()
-        sendEvent(.didLoad(title))
+        let sections = try await useCase.execute()
+        sendEvent(.didLoad(sections))
     }
 }
