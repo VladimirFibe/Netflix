@@ -1,15 +1,5 @@
 import UIKit
 
-
-
-
-
-
-
-
-
-
-
 enum Sections: Int {
     case movies
     case tv

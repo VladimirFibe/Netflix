@@ -27,7 +27,7 @@ final class BrowseHeroCell: BaseCollectionViewCell, SelfConfiguringCell {
         $0.contentMode = .scaleAspectFill
         $0.clipsToBounds = true
         return $0
-    }(UIImageView(image: UIImage(named: "heroImage")))
+    }(UIImageView(image: .hero))
     
     func configure(with title: Title) {
         heroImageView.kf.setImage(with: title.url)

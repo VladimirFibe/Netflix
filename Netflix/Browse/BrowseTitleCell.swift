@@ -11,7 +11,7 @@ final class BrowseTitleCell: BaseCollectionViewCell, SelfConfiguringCell {
         $0.contentMode = .scaleAspectFill
         $0.clipsToBounds = true
         return $0
-    }(UIImageView(image: UIImage(named: "heroImage")))
+    }(UIImageView(image: .hero))
     
     override func layoutSubviews() {
         super.layoutSubviews()

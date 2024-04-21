@@ -18,11 +18,9 @@ final class FetchBrowseSectionsUseCase: FetchBrowseSectionsUseCaseProtocol {
         let popular = try await apiService.getPopular()
         let upcoming = try await apiService.getUpcoming()
         let top = try await apiService.getTop()
-        let hero: [Title]
+        var hero: [Title] = []
         if let title = movies.randomElement() {
-            hero = [title]
-        } else {
-            hero = []
+            hero.append(title)
         }
         return Browse(hero: hero, movies: movies, tv: tv, popular: popular, upcoming: upcoming, top: top)
     }
