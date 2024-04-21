@@ -4,10 +4,10 @@ class MainTabBarViewController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let home = UINavigationController(rootViewController: HomeViewController())
+        let home = UINavigationController(rootViewController: BrowseViewController())
         let upcoming = UINavigationController(rootViewController: UpcomingViewController())
         let search = UINavigationController(rootViewController: SearchViewController())
-        let downloads = UINavigationController(rootViewController: BrowseViewController())
+        let downloads = UINavigationController(rootViewController: HomeViewController())
         
         home.tabBarItem = UITabBarItem(title: "Home", image: UIImage(systemName: "house"), tag: 0)
         upcoming.tabBarItem = UITabBarItem(title: "Coming Soon", image: UIImage(systemName: "play.circle"), tag: 1)
@@ -16,7 +16,7 @@ class MainTabBarViewController: UITabBarController {
         
         view.backgroundColor = .systemBackground
         setViewControllers([home, upcoming, search, downloads], animated: true)
-        selectedIndex = 3
+        selectedIndex = 0
     }
 }
 

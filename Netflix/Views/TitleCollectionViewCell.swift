@@ -5,6 +5,7 @@ class TitleCollectionViewCell: UICollectionViewCell {
     static let identifier = "TitleCollectionViewCell"
     private let posterImageView = UIImageView().apply {
         $0.contentMode = .scaleAspectFill
+        $0.clipsToBounds = true
     }
     override init(frame: CGRect) {
         super.init(frame: frame)

@@ -24,6 +24,6 @@ final class FetchBrowseSectionsUseCase: FetchBrowseSectionsUseCaseProtocol {
         } else {
             hero = []
         }
-        return Browse(hero: movies, movies: movies, tv: tv, popular: popular, upcoming: upcoming, top: top)
+        return Browse(hero: hero, movies: movies, tv: tv, popular: popular, upcoming: upcoming, top: top)
     }
 }

@@ -11,75 +11,45 @@ final class BrowseViewController: BaseViewController {
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: .rowLayout)
         collectionView.showsVerticalScrollIndicator = false
-//        collectionView.delegate = self
-        collectionView.register(TitleCollectionViewCell.self, forCellWithReuseIdentifier: TitleCollectionViewCell.identifier)
-        collectionView.register(BrowseHeroCell.self, forCellWithReuseIdentifier: BrowseHeroCell.idetifier)
+        collectionView.delegate = self
+        collectionView.register(BrowseTitleCell.self, forCellWithReuseIdentifier: BrowseTitleCell.identifier)
+        collectionView.register(BrowseHeroCell.self, forCellWithReuseIdentifier: BrowseHeroCell.identifier)
+        collectionView.register(BrowseTitleSupplementaryView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: BrowseTitleSupplementaryView.identifier)
         return collectionView
     }()
+    
+    func configure<T: SelfConfiguringCell>(_ cellType: T.Type, wiht title: Title, for indexPath: IndexPath) -> T {
+      guard let cell = collectionView.dequeueReusableCell(
+        withReuseIdentifier: cellType.identifier,
+        for: indexPath) as? T else { fatalError("Unable to dequeue \(cellType)")}
+      cell.configure(with: title)
+      return cell
+    }
     
     private func configureDataSource() {
         dataSource = DataSource(collectionView: collectionView) { collectionView, indexPath, itemIdentifier in
             let item = self.viewModel.rows[indexPath.section].items[indexPath.row]
             switch item {
-            case .hero(let element):
-                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BrowseHeroCell.idetifier, for: indexPath) as? BrowseHeroCell else {return UICollectionViewCell()}
-                cell.configure(with: element)
-                return cell
-            case .movies(let element):
-                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TitleCollectionViewCell.identifier, for: indexPath) as? TitleCollectionViewCell else {return UICollectionViewCell()}
-                if let title = element.poster_path {
-                    cell.configure(with: "https://image.tmdb.org/t/p/w500/\(title)")
-                }
-                return cell
-            case .tv(let element):
-                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TitleCollectionViewCell.identifier, for: indexPath) as? TitleCollectionViewCell else {return UICollectionViewCell()}
-                if let title = element.poster_path {
-                    cell.configure(with: "https://image.tmdb.org/t/p/w500/\(title)")
-                }
-                return cell
-            case .popular(let element):
-                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TitleCollectionViewCell.identifier, for: indexPath) as? TitleCollectionViewCell else {return UICollectionViewCell()}
-                if let title = element.poster_path {
-                    cell.configure(with: "https://image.tmdb.org/t/p/w500/\(title)")
-                }
-                return cell
-            case .upcoming(let element):
-                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TitleCollectionViewCell.identifier, for: indexPath) as? TitleCollectionViewCell else {return UICollectionViewCell()}
-                if let title = element.poster_path {
-                    cell.configure(with: "https://image.tmdb.org/t/p/w500/\(title)")
-                }
-                return cell
-            case .top(let element):
-                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TitleCollectionViewCell.identifier, for: indexPath) as? TitleCollectionViewCell else {return UICollectionViewCell()}
-                if let title = element.poster_path {
-                    cell.configure(with: "https://image.tmdb.org/t/p/w500/\(title)")
-                }
-                return cell
+            case .hero(let title): return self.configure(BrowseHeroCell.self, wiht: title, for: indexPath)
+            case .movies(let title): return self.configure(BrowseTitleCell.self, wiht: title, for: indexPath)
+            case .tv(let title): return self.configure(BrowseTitleCell.self, wiht: title, for: indexPath)
+            case .popular(let title): return self.configure(BrowseTitleCell.self, wiht: title, for: indexPath)
+            case .upcoming(let title): return self.configure(BrowseTitleCell.self, wiht: title, for: indexPath)
+            case .top(let title): return self.configure(BrowseTitleCell.self, wiht: title, for: indexPath)
             }
         }
         
-//        dataSource.supplementaryViewProvider = { [weak self] collectionView, kind, indexPath in
-//            let section = BrowseSectionType(rawValue: indexPath.section)
-//            guard section != .banner else { return nil }
-//            
-//            guard let self = self, let title = self.viewModel.rows[indexPath.section].title  else { return nil }
-//            let headerView: BrowseSectionHeaderSupplementaryView = collectionView.dequeueReusableSupplementaryView(
-//                ofKind: kind, for: indexPath
-//            )
-//            let action: NewCallback
-//            switch section {
-//            case .restaurants:
-//                action = self.navigation.onRestaurantsTap
-//            case .categories:
-//                action = self.navigation.onCategoriesTap
-//            case .articles:
-//                action = self.navigation.onArticlesTap
-//            default:
-//                action = {}
-//            }
-//            headerView.set(rootView: .init(title: title, action: action), parentViewController: self)
-//            return headerView
-//        }
+        dataSource.supplementaryViewProvider = { [weak self] collectionView, kind, indexPath in
+            guard let self,
+                  let title = self.viewModel.rows[indexPath.section].title,
+                  let sectionHeader = collectionView.dequeueReusableSupplementaryView(
+                    ofKind: kind,
+                    withReuseIdentifier: BrowseTitleSupplementaryView.identifier,
+                    for: indexPath
+                  ) as? BrowseTitleSupplementaryView else { return nil }
+            sectionHeader.configure(with: title)
+            return sectionHeader
+        }
     }
     
     private func reloadData() {
@@ -123,6 +93,12 @@ extension BrowseViewController {
     }
 }
 
+extension BrowseViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print(indexPath.section)
+    }
+}
+
 extension UICollectionViewLayout {
     
     static var rowLayout: UICollectionViewLayout {
@@ -146,25 +122,37 @@ extension UICollectionViewLayout {
             } else {
                 let categoryItemSize = NSCollectionLayoutSize(
                     widthDimension: .absolute(100),
-                    heightDimension: .estimated(116)
+                    heightDimension: .absolute(150)
                 )
                 let categoryItem = NSCollectionLayoutItem(layoutSize: categoryItemSize)
                 
                 let categoryGroupSize = NSCollectionLayoutSize(
                     widthDimension: .estimated(350),
-                    heightDimension: .absolute(116)
+                    heightDimension: .absolute(150)
                 )
                 let categoryGroup = NSCollectionLayoutGroup.horizontal(layoutSize: categoryGroupSize, subitems: [categoryItem])
                 categoryGroup.interItemSpacing = .fixed(8)
                 
                 let section = NSCollectionLayoutSection(group: categoryGroup)
-                //            section.boundarySupplementaryItems = [header]
+                section.boundarySupplementaryItems = [header]
                 section.orthogonalScrollingBehavior = .continuous
                 section.interGroupSpacing = 10
-                section.contentInsets = .init(top: 12, leading: 20, bottom: 0, trailing: 0)
+                section.contentInsets = .init(top: 0, leading: 0, bottom: 0, trailing: 0)
                 
                 return section
             }
         }
+    }
+    
+    static var header: NSCollectionLayoutBoundarySupplementaryItem {
+        let headerSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1),
+            heightDimension: .absolute(54)
+        )
+        return NSCollectionLayoutBoundarySupplementaryItem(
+            layoutSize: headerSize,
+            elementKind: UICollectionView.elementKindSectionHeader, 
+            alignment: .top
+        )
     }
 }

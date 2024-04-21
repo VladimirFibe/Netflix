@@ -1,12 +1,12 @@
 import UIKit
 
-final class BrowseHeroCell: BaseCollectionViewCell {
-    static let idetifier = "BrowseHeroCell"
+final class BrowseHeroCell: BaseCollectionViewCell, SelfConfiguringCell {
+    static var identifier = "BrowseHeroCell"
     
     private let downloadButton: UIButton = {
         $0.setTitle("Download", for: [])
-        $0.tintColor = .black
-        $0.layer.borderColor = UIColor.black.cgColor
+        $0.tintColor = .label
+        $0.layer.borderColor = UIColor.label.cgColor
         $0.layer.borderWidth = 1
         $0.layer.cornerRadius = 5
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -15,8 +15,8 @@ final class BrowseHeroCell: BaseCollectionViewCell {
     
     private let playButton: UIButton = {
         $0.setTitle("Play", for: [])
-        $0.tintColor = .black
-        $0.layer.borderColor = UIColor.black.cgColor
+        $0.tintColor = .label
+        $0.layer.borderColor = UIColor.label.cgColor
         $0.layer.borderWidth = 1
         $0.layer.cornerRadius = 5
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -48,21 +48,36 @@ final class BrowseHeroCell: BaseCollectionViewCell {
         heroImageView.layer.addSublayer(gradientLayer)
     }
 }
-
+// MARK: - Actions
+extension BrowseHeroCell {
+    @objc private func downloadTapped() {
+        print(#function)
+    }
+    
+    @objc private func playTapped() {
+        print(#function)
+    }
+}
+// MARK: - Setup Views
 extension BrowseHeroCell {
     override func setupViews() {
         [heroImageView, playButton, downloadButton].forEach { contentView.addSubview($0)}
+        playButton.addTarget(self, action: #selector(playTapped), for: .primaryActionTriggered)
+        downloadButton.addTarget(self, action: #selector(downloadTapped), for: .primaryActionTriggered)
         addGradient()
     }
     
     override func setupConstraints() {
+        let verticalPadding = -50.0
+        let horizontalPadding = 70.0
+        let width = 120.0
         NSLayoutConstraint.activate([
-            downloadButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -70),
-            downloadButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -50),
-            downloadButton.widthAnchor.constraint(equalToConstant: 120),
-            playButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 70),
-            playButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -50),
-            playButton.widthAnchor.constraint(equalToConstant: 120)
+            downloadButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -horizontalPadding),
+            downloadButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: verticalPadding),
+            downloadButton.widthAnchor.constraint(equalToConstant: width),
+            playButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: horizontalPadding),
+            playButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: verticalPadding),
+            playButton.widthAnchor.constraint(equalTo: downloadButton.widthAnchor)
         ])
     }
 }

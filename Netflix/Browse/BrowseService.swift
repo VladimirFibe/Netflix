@@ -30,7 +30,7 @@ extension APICaller: BrowseServiceProtocol {
     }
     
     func getTop() async throws -> [Title] {
-        let result: TrendingTitleResponse = try await request(.search("Queen"))
+        let result: TrendingTitleResponse = try await request(.getTopRated)
         return result.results
     }
 }
