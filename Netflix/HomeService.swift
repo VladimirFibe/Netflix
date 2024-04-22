@@ -10,25 +10,25 @@ protocol HomeServiceProtocol {
 
 final class HomeService: HomeServiceProtocol {
     func getUpcomingMovies() async throws -> [Movie] {
-        try await getMovies("Upcoming")
+        try await getMovies("Movies")
     }
     
     func getTrendingTvs() async throws -> [Movie] {
-        try await getMovies("TV")
+        try await getMovies("Movies")
     }
     
     func getPopularMovies() async throws -> [Movie] {
-        try await getMovies("Popular")
+        try await getMovies("Movies")
     }
     
     func getTopRatedMovies() async throws -> [Movie] {
-        try await getMovies("Top")
+        try await getMovies("Movies")
     }
     
     func getTrendingMovies() async throws -> [Movie] {
         try await getMovies("Movies")
     }
     func getMovies(_ name: String) async throws -> [Movie] {
-        Bundle.main.decode([Movie].self, frome: "\(name).json")
+        Bundle.main.decode([Movie].self, from: "\(name).json")
     }
 }

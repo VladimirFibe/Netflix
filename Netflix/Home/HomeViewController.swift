@@ -1,25 +1,32 @@
 import UIKit
 
+private typealias DataSource = UICollectionViewDiffableDataSource<HomeSection, Movie>
+private typealias Snapshot = NSDiffableDataSourceSnapshot<HomeSection, Movie>
+
 class HomeViewController: BaseViewController {
-    var sections: [HomeSection] = []
-    private let store: HomeStore
-    init(store: HomeStore) {
-        self.store = store
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
+    private var sections: [HomeSection] = []
+    private var dataSourse: DataSource!
+    private let store = HomeStore()
+    private let hero = HomeHeroCell()
     private func reloadData() {
-        print(sections.count)
+        hero.configure(with: sections[0].movies[0])
     }
 }
 // MARK: - Setup Views
 extension HomeViewController {
     override func setupViews() {
         store.sendAction(.fetch)
+        view.addSubview(hero)
+        hero.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    override func setupConstraints() {
+        NSLayoutConstraint.activate([
+            hero.topAnchor.constraint(equalTo: view.topAnchor),
+            hero.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            hero.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            hero.heightAnchor.constraint(equalToConstant: 500)
+        ])
     }
     override func setupObservers() {
         store
@@ -30,7 +37,7 @@ extension HomeViewController {
                 switch event {
                 case let .didLoad(sections):
                     self.sections = sections
-                    reloadData()
+                    self.reloadData()
                 }
             }.store(in: &bag)
     }
