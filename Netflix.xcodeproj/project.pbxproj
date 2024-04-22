@@ -27,6 +27,7 @@
 		E88DC6EE2BD582F80019FC89 /* Upcoming.json in Resources */ = {isa = PBXBuildFile; fileRef = E88DC6ED2BD582F80019FC89 /* Upcoming.json */; };
 		E88DC6F02BD583780019FC89 /* Top.json in Resources */ = {isa = PBXBuildFile; fileRef = E88DC6EF2BD583780019FC89 /* Top.json */; };
 		E88DC6F22BD585FA0019FC89 /* HomeSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88DC6F12BD585FA0019FC89 /* HomeSection.swift */; };
+		E8AC93412BD6499B0003C470 /* 01.png in Resources */ = {isa = PBXBuildFile; fileRef = E8AC93402BD6499B0003C470 /* 01.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +54,7 @@
 		E88DC6ED2BD582F80019FC89 /* Upcoming.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Upcoming.json; sourceTree = "<group>"; };
 		E88DC6EF2BD583780019FC89 /* Top.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Top.json; sourceTree = "<group>"; };
 		E88DC6F12BD585FA0019FC89 /* HomeSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSection.swift; sourceTree = "<group>"; };
+		E8AC93402BD6499B0003C470 /* 01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 01.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,7 +73,7 @@
 			isa = PBXGroup;
 			children = (
 				27BD366129D458E300A548E6 /* README.md */,
-				E88DC6D42BD567580019FC89 /* 01.md */,
+				E8AC933D2BD649200003C470 /* Docs */,
 				27BD364C29D4565500A548E6 /* Netflix */,
 				27BD364B29D4565500A548E6 /* Products */,
 				27F7A67D29D850F20015DE1C /* Frameworks */,
@@ -160,6 +162,31 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		E8AC933D2BD649200003C470 /* Docs */ = {
+			isa = PBXGroup;
+			children = (
+				E8AC933F2BD649400003C470 /* img */,
+				E8AC933E2BD649320003C470 /* 01 */,
+			);
+			path = Docs;
+			sourceTree = "<group>";
+		};
+		E8AC933E2BD649320003C470 /* 01 */ = {
+			isa = PBXGroup;
+			children = (
+				E88DC6D42BD567580019FC89 /* 01.md */,
+			);
+			path = 01;
+			sourceTree = "<group>";
+		};
+		E8AC933F2BD649400003C470 /* img */ = {
+			isa = PBXGroup;
+			children = (
+				E8AC93402BD6499B0003C470 /* 01.png */,
+			);
+			path = img;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -226,6 +253,7 @@
 			files = (
 				27BD365A29D4565700A548E6 /* LaunchScreen.storyboard in Resources */,
 				E88DC6E82BD581CF0019FC89 /* TV.json in Resources */,
+				E8AC93412BD6499B0003C470 /* 01.png in Resources */,
 				27BD365729D4565700A548E6 /* Assets.xcassets in Resources */,
 				E88DC6F02BD583780019FC89 /* Top.json in Resources */,
 				E88DC6E22BD57EDF0019FC89 /* Movies.json in Resources */,
