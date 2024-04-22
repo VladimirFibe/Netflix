@@ -27,6 +27,10 @@
 		E8AC93452BD661E50003C470 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8AC93442BD661E50003C470 /* BaseCollectionViewCell.swift */; };
 		E8AC93472BD662320003C470 /* HomeHeroCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8AC93462BD662320003C470 /* HomeHeroCell.swift */; };
 		E8AC93492BD666820003C470 /* FileStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8AC93482BD666820003C470 /* FileStorage.swift */; };
+		E8AC934B2BD677BA0003C470 /* 02.png in Resources */ = {isa = PBXBuildFile; fileRef = E8AC934A2BD677BA0003C470 /* 02.png */; };
+		E8AC934D2BD686280003C470 /* HomeMovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8AC934C2BD686280003C470 /* HomeMovieCell.swift */; };
+		E8AC934F2BD68C740003C470 /* BaseCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8AC934E2BD68C740003C470 /* BaseCollectionReusableView.swift */; };
+		E8AC93512BD68CC30003C470 /* HomeSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8AC93502BD68CC30003C470 /* HomeSectionHeader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +58,10 @@
 		E8AC93442BD661E50003C470 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
 		E8AC93462BD662320003C470 /* HomeHeroCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeroCell.swift; sourceTree = "<group>"; };
 		E8AC93482BD666820003C470 /* FileStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileStorage.swift; sourceTree = "<group>"; };
+		E8AC934A2BD677BA0003C470 /* 02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 02.png; sourceTree = "<group>"; };
+		E8AC934C2BD686280003C470 /* HomeMovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMovieCell.swift; sourceTree = "<group>"; };
+		E8AC934E2BD68C740003C470 /* BaseCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionReusableView.swift; sourceTree = "<group>"; };
+		E8AC93502BD68CC30003C470 /* HomeSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSectionHeader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +145,8 @@
 			children = (
 				E88DC6D12BD566B20019FC89 /* HomeViewController.swift */,
 				E8AC93462BD662320003C470 /* HomeHeroCell.swift */,
+				E8AC934C2BD686280003C470 /* HomeMovieCell.swift */,
+				E8AC93502BD68CC30003C470 /* HomeSectionHeader.swift */,
 				E88DC6D52BD568870019FC89 /* HomeStore.swift */,
 			);
 			path = Home;
@@ -147,6 +157,7 @@
 			children = (
 				E88DC6D82BD56B9F0019FC89 /* BaseViewController.swift */,
 				E8AC93442BD661E50003C470 /* BaseCollectionViewCell.swift */,
+				E8AC934E2BD68C740003C470 /* BaseCollectionReusableView.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -181,6 +192,7 @@
 			isa = PBXGroup;
 			children = (
 				E8AC93402BD6499B0003C470 /* 01.png */,
+				E8AC934A2BD677BA0003C470 /* 02.png */,
 			);
 			path = img;
 			sourceTree = "<group>";
@@ -247,6 +259,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8AC934B2BD677BA0003C470 /* 02.png in Resources */,
 				27BD365A29D4565700A548E6 /* LaunchScreen.storyboard in Resources */,
 				E8AC93412BD6499B0003C470 /* 01.png in Resources */,
 				27BD365729D4565700A548E6 /* Assets.xcassets in Resources */,
@@ -261,6 +274,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8AC93512BD68CC30003C470 /* HomeSectionHeader.swift in Sources */,
 				E88DC6D22BD566B20019FC89 /* HomeViewController.swift in Sources */,
 				E8AC93492BD666820003C470 /* FileStorage.swift in Sources */,
 				E8AC93452BD661E50003C470 /* BaseCollectionViewCell.swift in Sources */,
@@ -275,6 +289,8 @@
 				E88DC6D62BD568870019FC89 /* HomeStore.swift in Sources */,
 				E88DC6D92BD56B9F0019FC89 /* BaseViewController.swift in Sources */,
 				E88DC6DD2BD56ED80019FC89 /* HomeService.swift in Sources */,
+				E8AC934F2BD68C740003C470 /* BaseCollectionReusableView.swift in Sources */,
+				E8AC934D2BD686280003C470 /* HomeMovieCell.swift in Sources */,
 				E88DC6DB2BD56E2F0019FC89 /* HomeUseCase.swift in Sources */,
 				2754F08029D975E300C03FFD /* Netflix.xcdatamodeld in Sources */,
 			);

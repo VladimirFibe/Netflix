@@ -21,17 +21,13 @@ final class HomeStore: Store<HomeEvent, HomeAction> {
     
     private func fetch() async throws {
         let movies = Bundle.main.decode([Movie].self, from: "Movies.json")
-        var hero: [Movie] = []
-        if let movie = movies.randomElement() {
-            hero.append(movie)
-        }
         let sections = [
-            HomeSection(title: nil, movies: hero),
-            HomeSection(title: "Trending Moviews", movies: movies),
-            HomeSection(title: "Trending TV", movies: movies),
-            HomeSection(title: "Popular", movies: movies),
-            HomeSection(title: "Upcoming Movies", movies: movies),
-            HomeSection(title: "Top rated", movies: movies)
+            HomeSection(title: nil, movies: Array(movies[0...0])),
+            HomeSection(title: "Trending Moviews", movies: Array(movies[1...4])),
+            HomeSection(title: "Trending TV", movies: Array(movies[5...8])),
+            HomeSection(title: "Popular", movies: Array(movies[9...11])),
+            HomeSection(title: "Upcoming Movies", movies: Array(movies[12...14])),
+            HomeSection(title: "Top rated", movies: Array(movies[15...19]))
         ]
         sendEvent(.didLoad(sections))
     }
