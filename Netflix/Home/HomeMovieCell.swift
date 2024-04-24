@@ -10,8 +10,15 @@ final class HomeMovieCell: BaseCollectionViewCell, SelfConfiguringMovieCell {
     }(UIImageView())
     
     func configure(with movie: Movie) {
-        FileStorage.downloadImage(link: movie.posterUrl) { image in
-            self.posterImageView.image = image
+        if let url = URL(string: movie.posterUrl) {
+            let downloadQueue = DispatchQueue(label: "imageDownloadQueue")
+            downloadQueue.async {
+                if let data = NSData(contentsOf: url), let image = UIImage(data: data as Data) {
+                    DispatchQueue.main.async {
+                        self.posterImageView.image = image
+                    }
+                }
+            }
         }
     }
     

@@ -8,11 +8,6 @@ class HomeViewController: BaseViewController {
     private var dataSource: DataSource!
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createCompositionalLayout())
-        collectionView.register(HomeHeroCell.self, forCellWithReuseIdentifier: HomeHeroCell.identifier)
-        collectionView.register(HomeMovieCell.self, forCellWithReuseIdentifier: HomeMovieCell.identifier)
-        collectionView.register(HomeSectionHeader.self,
-                                forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-                                withReuseIdentifier: HomeSectionHeader.identifier)
         return collectionView
     }()
     private let store = HomeStore()
@@ -32,35 +27,30 @@ class HomeViewController: BaseViewController {
 }
 // MARK: - Setup Views
 extension HomeViewController {
-    func configure<T: SelfConfiguringMovieCell>(_ cellType: T.Type, 
-                                                wiht movie: Movie,
-                                                for indexPath: IndexPath) -> T {
-      guard let cell = collectionView.dequeueReusableCell(
-        withReuseIdentifier: cellType.identifier,
-        for: indexPath) as? T else { fatalError("Unable to dequeue \(cellType)")}
-      cell.configure(with: movie)
-      return cell
+    func cellRegistrationHandler<T: SelfConfiguringMovieCell>(cell: T, indexPath: IndexPath, movie: Movie) {
+        cell.configure(with: movie)
     }
     
-    private func configureDataSource() {
+    func headerRegistrationHandler(view: HomeSectionHeader, kind: String, indexPath: IndexPath) {
+        guard let title = sections[indexPath.section].title else { return}
+        view.configure(with: title)
+    }
+    
+    func createDataSource() {
+        let heroRegistration = UICollectionView.CellRegistration<HomeHeroCell, Movie>(handler: cellRegistrationHandler)
+        let movieCellRegistration = UICollectionView.CellRegistration<HomeMovieCell, Movie>(handler: cellRegistrationHandler)
         dataSource = DataSource(collectionView: collectionView) { collectionView, indexPath, movie in
             if indexPath.section == 0 {
-                return self.configure(HomeHeroCell.self, wiht: movie, for: indexPath)
+                collectionView.dequeueConfiguredReusableCell(using: heroRegistration, for: indexPath, item: movie)
             } else {
-                return self.configure(HomeMovieCell.self, wiht: movie, for: indexPath)
+                collectionView.dequeueConfiguredReusableCell(using: movieCellRegistration, for: indexPath, item: movie)
             }
         }
         
-        dataSource.supplementaryViewProvider = { [weak self] collectionView, kind, indexPath in
-            guard let self,
-                  let title = sections[indexPath.section].title,
-                  let sectionHeader = collectionView.dequeueReusableSupplementaryView(
-                    ofKind: kind,
-                    withReuseIdentifier: HomeSectionHeader.identifier,
-                    for: indexPath
-                  ) as? HomeSectionHeader else { return nil }
-            sectionHeader.configure(with: title)
-            return sectionHeader
+        let supplementaryRegistration = UICollectionView.SupplementaryRegistration(elementKind: UICollectionView.elementKindSectionHeader, handler: headerRegistrationHandler)
+
+        dataSource.supplementaryViewProvider = { collectionView, kind, indexPath in
+            self.collectionView.dequeueConfiguredReusableSupplementary(using: supplementaryRegistration, for: indexPath)
         }
     }
     
@@ -84,13 +74,13 @@ extension HomeViewController {
     
     func createMovieSection(using section: HomeSection) -> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(
-            widthDimension: .absolute(100),
-            heightDimension: .absolute(150)
+            widthDimension: .fractionalWidth(1),
+            heightDimension: .fractionalHeight(1)
         )
         let layoutItem = NSCollectionLayoutItem(layoutSize: itemSize)
         layoutItem.contentInsets.trailing = 8
         let layoutGroupSize = NSCollectionLayoutSize(
-            widthDimension: .estimated(350),
+            widthDimension: .absolute(120),
             heightDimension: .absolute(150)
         )
         let layoutGroup = NSCollectionLayoutGroup.horizontal(layoutSize: layoutGroupSize, subitems: [layoutItem])
@@ -128,7 +118,7 @@ extension HomeViewController {
     override func setupViews() {
         store.sendAction(.fetch)
         view.addSubview(collectionView)
-        configureDataSource()
+        createDataSource()
     }
     
     override func setupConstraints() {
