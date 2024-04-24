@@ -1,9 +1,65 @@
 import UIKit
 
-private typealias DataSource = UICollectionViewDiffableDataSource<HomeSection, Movie>
-private typealias Snapshot = NSDiffableDataSourceSnapshot<HomeSection, Movie>
 
-class HomeViewController: BaseViewController {
+class HomeViewController: UIViewController {
+    enum Section {
+        case hero
+    }
+    typealias DataSource = UICollectionViewDiffableDataSource<Section, Int>
+    typealias Snapshot = NSDiffableDataSourceSnapshot<Section, Int>
+    
+    private var dataSource: DataSource!
+    
+    private var collectionView: UICollectionView!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .red
+        setupCollectionView()
+    }
+}
+
+extension HomeViewController {
+    private func setupCollectionView() {
+        var listConfiguration = UICollectionLayoutListConfiguration(appearance: .grouped)
+                listConfiguration.showsSeparators = false
+                listConfiguration.backgroundColor = .clear
+        
+        let layout = UICollectionViewCompositionalLayout.list(using: listConfiguration)
+        collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: layout)
+        view.addSubview(collectionView)
+        collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        collectionView.backgroundColor = .blue
+        
+        let cellRegistration = UICollectionView.CellRegistration {
+            (cell: UICollectionViewListCell, indexPath: IndexPath, itemIdentifier: Int) in
+            let movie = Movie.sampleData[indexPath.item]
+            var contentConfiguration = cell.defaultContentConfiguration()
+            contentConfiguration.text = movie.title
+            cell.contentConfiguration = contentConfiguration
+        }
+        
+        dataSource = DataSource(collectionView: collectionView) {
+            (collectionView: UICollectionView, indexPath: IndexPath, itemIdentifier: Int) in
+            return collectionView.dequeueConfiguredReusableCell(
+                using: cellRegistration, for: indexPath, item: itemIdentifier)
+        }
+        
+        var snapshot = Snapshot()
+        snapshot.appendSections([.hero])
+        snapshot.appendItems(Movie.sampleData.map { $0.id })
+        dataSource.apply(snapshot)
+        
+        collectionView.dataSource = dataSource
+    }
+}
+    /*
+     enum Section {
+     case hero
+     case top
+     }
+    typealias DataSource = UICollectionViewDiffableDataSource<Section, Movie>
+    typealias Snapshot = NSDiffableDataSourceSnapshot<Section, Movie>
     private var sections: [HomeSection] = []
     private var dataSource: DataSource!
     private lazy var collectionView: UICollectionView = {
@@ -137,3 +193,4 @@ extension HomeViewController {
             }.store(in: &bag)
     }
 }
+*/

@@ -4,7 +4,7 @@ class MainTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let home = UINavigationController(rootViewController: UIViewController())
+        let home = UINavigationController(rootViewController: HomeViewController())
         let upcoming = UINavigationController(rootViewController: UIViewController())
         let search = UINavigationController(rootViewController: UIViewController())
         let downloads = UINavigationController(rootViewController: UIViewController())
@@ -16,21 +16,5 @@ class MainTabBarController: UITabBarController {
 
         view.backgroundColor = .systemBackground
         setViewControllers([home, upcoming, search, downloads], animated: true)
-        
-        printMovies()
-    }
-    
-    private func printMovies() {
-        let movies = Bundle.main.decode([Movie].self, from: "Movies.json")
-        print("static let sampleData: [Movie] = [")
-        movies.forEach {
-            print(".init(id: \($0.id),")
-            print("overview: \"\($0.overview)\",")
-            print("posterPath: \"\($0.posterPath)\",")
-            print("releaseDate: \"\($0.releaseDate)\",")
-            print("title: \"\($0.title)\"")
-            print("),")
-        }
-        print("]")
     }
 }
