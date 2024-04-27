@@ -7,7 +7,7 @@ final class HomeSectionHeader: BaseCollectionReusableView {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.adjustsFontForContentSizeCategory = true
         $0.textColor = .label
-        $0.font = .systemFont(ofSize: 18, weight: .semibold)
+        $0.font = AppFont.medium.s16
         return $0
     }(UILabel())
     
