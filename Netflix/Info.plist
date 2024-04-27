@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>Token</key>
+	<string>Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkMDU1NzM4MTQ2MzhlM2UwODA2ZmQ0YzQyNWZlNjc2YSIsInN1YiI6IjYzMDc0YjVhYTI3NTAyMDA3ZWVlMDMxNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Q_heu_i2C3bO8eRVqwiS-N-KcluGGlI2CQC5asvMC1w</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>NetflixSans-Bold.otf</string>

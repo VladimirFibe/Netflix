@@ -1,5 +1,11 @@
 import Foundation
 
+struct MovieResponse: Codable {
+    let page: Int
+    let results: [Movie]
+    let totalPages, totalResults: Int
+}
+
 struct Movie: Codable, Hashable {
     let id: Int
     let overview: String

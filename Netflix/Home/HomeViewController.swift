@@ -18,6 +18,16 @@ class HomeViewController: UIViewController {
         setupCollectionView()
         createDataSource()
         reloadData()
+        Task {
+            do {
+                let response: MovieResponse = try await APIClent.shared.request(.getPopular(language: "ru-RU", page: 1, region: "RU"))
+                response.results.forEach {
+                    print("DEBUG: ", $0.title)
+                }
+            } catch {
+                print("DEBUG: ", error.localizedDescription)
+            }
+        }
     }
 }
 
@@ -110,12 +120,11 @@ extension HomeViewController {
  
     func createLayout() -> UICollectionViewLayout {
         let layout = UICollectionViewCompositionalLayout{ index, environment in
-            if index == 0 {
-                self.createHeroSection()
-            } else {
-                self.createMovieSection()
-            }
-        }
+            guard let section = Section(rawValue: index) else { fatalError() }
+            switch section {
+            case .hero: return self.createHeroSection()
+            case .movie: return self.createMovieSection()            }
+         }
         return layout
     }
 }

@@ -19,4 +19,11 @@ enum AppFont: String, AppFontProtocol {
     case medium = "NetflixSans-Medium"
     case light = "NetflixSans-Light"
     case bold = "NetflixSans-Bold"
+    
+    static func printFonts() {
+        for family in UIFont.familyNames.sorted() {
+          let names = UIFont.fontNames(forFamilyName: family)
+          print(family, names)
+        }
+    }
 }
