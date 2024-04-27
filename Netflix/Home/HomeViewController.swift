@@ -2,195 +2,120 @@ import UIKit
 
 
 class HomeViewController: UIViewController {
-    enum Section {
+    enum Section: Int, CaseIterable {
         case hero
+        case movie
     }
-    typealias DataSource = UICollectionViewDiffableDataSource<Section, Int>
-    typealias Snapshot = NSDiffableDataSourceSnapshot<Section, Int>
+    
+    typealias DataSource = UICollectionViewDiffableDataSource<Section, Movie>
+    typealias Snapshot = NSDiffableDataSourceSnapshot<Section, Movie>
     
     private var dataSource: DataSource!
-    
     private var collectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .red
         setupCollectionView()
+        createDataSource()
+        reloadData()
     }
 }
 
 extension HomeViewController {
     private func setupCollectionView() {
-        var listConfiguration = UICollectionLayoutListConfiguration(appearance: .grouped)
-                listConfiguration.showsSeparators = false
-                listConfiguration.backgroundColor = .clear
-        
-        let layout = UICollectionViewCompositionalLayout.list(using: listConfiguration)
-        collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: layout)
-        view.addSubview(collectionView)
+        collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createLayout())
         collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        collectionView.backgroundColor = .blue
-        
-        let cellRegistration = UICollectionView.CellRegistration {
-            (cell: UICollectionViewListCell, indexPath: IndexPath, itemIdentifier: Int) in
-            let movie = Movie.sampleData[indexPath.item]
-            var contentConfiguration = cell.defaultContentConfiguration()
-            contentConfiguration.text = movie.title
-            cell.contentConfiguration = contentConfiguration
-        }
-        
-        dataSource = DataSource(collectionView: collectionView) {
-            (collectionView: UICollectionView, indexPath: IndexPath, itemIdentifier: Int) in
-            return collectionView.dequeueConfiguredReusableCell(
-                using: cellRegistration, for: indexPath, item: itemIdentifier)
-        }
-        
-        var snapshot = Snapshot()
-        snapshot.appendSections([.hero])
-        snapshot.appendItems(Movie.sampleData.map { $0.id })
-        dataSource.apply(snapshot)
-        
-        collectionView.dataSource = dataSource
-    }
-}
-    /*
-     enum Section {
-     case hero
-     case top
-     }
-    typealias DataSource = UICollectionViewDiffableDataSource<Section, Movie>
-    typealias Snapshot = NSDiffableDataSourceSnapshot<Section, Movie>
-    private var sections: [HomeSection] = []
-    private var dataSource: DataSource!
-    private lazy var collectionView: UICollectionView = {
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createCompositionalLayout())
-        return collectionView
-    }()
-    private let store = HomeStore()
-    private func reloadData() {
-        var snapshot = Snapshot()
-        snapshot.appendSections(sections)
-        sections.forEach {
-            snapshot.appendItems($0.movies, toSection: $0)
-        }
-        dataSource.apply(snapshot, animatingDifferences: false)
+        view.addSubview(collectionView)
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        collectionView.frame = view.bounds
-    }
-}
-// MARK: - Setup Views
-extension HomeViewController {
-    func cellRegistrationHandler<T: SelfConfiguringMovieCell>(cell: T, indexPath: IndexPath, movie: Movie) {
+    private func cellRegistrationHandler<T: SelfConfiguringMovieCell>(cell: T, indexPath: IndexPath, movie: Movie) {
         cell.configure(with: movie)
     }
     
-    func headerRegistrationHandler(view: HomeSectionHeader, kind: String, indexPath: IndexPath) {
-        guard let title = sections[indexPath.section].title else { return}
-        view.configure(with: title)
+    private func headerRegistrationHandler(view: HomeSectionHeader, kind: String, indexPath: IndexPath) {
+        view.configure(with: "Continue Watching for Ellie")
     }
     
-    func createDataSource() {
+    private func createDataSource() {
         let heroRegistration = UICollectionView.CellRegistration<HomeHeroCell, Movie>(handler: cellRegistrationHandler)
-        let movieCellRegistration = UICollectionView.CellRegistration<HomeMovieCell, Movie>(handler: cellRegistrationHandler)
+        
+        let cellRegistration = UICollectionView.CellRegistration<HomeMovieCell, Movie>(handler: cellRegistrationHandler)
+        
+        let supplementaryRegistration = UICollectionView.SupplementaryRegistration<HomeSectionHeader>(elementKind: UICollectionView.elementKindSectionHeader, handler: headerRegistrationHandler)
+        
         dataSource = DataSource(collectionView: collectionView) { collectionView, indexPath, movie in
-            if indexPath.section == 0 {
-                collectionView.dequeueConfiguredReusableCell(using: heroRegistration, for: indexPath, item: movie)
-            } else {
-                collectionView.dequeueConfiguredReusableCell(using: movieCellRegistration, for: indexPath, item: movie)
+            guard let section = Section(rawValue: indexPath.section) else { fatalError() }
+            switch section {
+            case .hero: return collectionView.dequeueConfiguredReusableCell(using: heroRegistration, for: indexPath, item: movie)
+            case .movie: return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: movie)
             }
         }
         
-        let supplementaryRegistration = UICollectionView.SupplementaryRegistration(elementKind: UICollectionView.elementKindSectionHeader, handler: headerRegistrationHandler)
-
         dataSource.supplementaryViewProvider = { collectionView, kind, indexPath in
             self.collectionView.dequeueConfiguredReusableSupplementary(using: supplementaryRegistration, for: indexPath)
         }
     }
     
-    func createHeroSection(using section: HomeSection) -> NSCollectionLayoutSection {
-        let itemSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(1),
-            heightDimension: .fractionalHeight(1)
-        )
-        let layoutItem = NSCollectionLayoutItem(layoutSize: itemSize)
-        
-        let layoutGroupSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(1),
-            heightDimension: .absolute(500)
-        )
-        let layoutGroup = NSCollectionLayoutGroup.horizontal(layoutSize: layoutGroupSize, subitems: [layoutItem])
-        
-        let layoutSection = NSCollectionLayoutSection(group: layoutGroup)
-        layoutSection.orthogonalScrollingBehavior = .continuous
-        return layoutSection
-    }
-    
-    func createMovieSection(using section: HomeSection) -> NSCollectionLayoutSection {
-        let itemSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(1),
-            heightDimension: .fractionalHeight(1)
-        )
-        let layoutItem = NSCollectionLayoutItem(layoutSize: itemSize)
-        layoutItem.contentInsets.trailing = 8
-        let layoutGroupSize = NSCollectionLayoutSize(
-            widthDimension: .absolute(120),
-            heightDimension: .absolute(150)
-        )
-        let layoutGroup = NSCollectionLayoutGroup.horizontal(layoutSize: layoutGroupSize, subitems: [layoutItem])
-        layoutGroup.interItemSpacing = .fixed(8)
-        let layoutSection = NSCollectionLayoutSection(group: layoutGroup)
-        layoutSection.orthogonalScrollingBehavior = .continuous
-        
-        let layoutSectionHeaderSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(1),
-            heightDimension: .estimated(20)
-        )
-        let layoutSectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
-            layoutSize: layoutSectionHeaderSize,
-            elementKind: UICollectionView.elementKindSectionHeader,
-            alignment: .top
-        )
-        layoutSection.boundarySupplementaryItems = [layoutSectionHeader]
-        return layoutSection
-    }
-    
-    func createCompositionalLayout() -> UICollectionViewLayout {
-        let layout = UICollectionViewCompositionalLayout { index, environment in
-            if index == 0 {
-                self.createHeroSection(using: self.sections[index])
-            } else {
-                self.createMovieSection(using: self.sections[index])
-            }
-        }
-        let config = UICollectionViewCompositionalLayoutConfiguration()
-        config.interSectionSpacing = 20
-        layout.configuration = config
-        return layout
-    }
-    
-    override func setupViews() {
-        store.sendAction(.fetch)
-        view.addSubview(collectionView)
-        createDataSource()
-    }
-    
-    override func setupConstraints() {
-    }
-    override func setupObservers() {
-        store
-            .events
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] event in
-                guard let self = self else { return }
-                switch event {
-                case let .didLoad(sections):
-                    self.sections = sections
-                    self.reloadData()
-                }
-            }.store(in: &bag)
+    private func reloadData() {
+        var movies = Bundle.main.decode([Movie].self, from: "Movies.json")
+        let hero = [movies.removeFirst()]
+        var snapshot = Snapshot()
+        snapshot.appendSections(Section.allCases)
+        snapshot.appendItems(hero, toSection: .hero)
+        snapshot.appendItems(movies, toSection: .movie)
+        dataSource.apply(snapshot)
     }
 }
-*/
+
+extension HomeViewController {
+    private func createHeroSection() -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1),
+            heightDimension: .fractionalHeight(1))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1),
+            heightDimension: .absolute(500))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
+                                                       subitems: [item])
+        let section = NSCollectionLayoutSection(group: group)
+        section.orthogonalScrollingBehavior = .continuous
+        return section
+    }
+    
+    private func createMovieSection() -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                              heightDimension: .fractionalHeight(1.0))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        
+        let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(106),
+                                               heightDimension: .absolute(152))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
+                                                       subitems: [item])
+        let section = NSCollectionLayoutSection(group: group)
+        section.orthogonalScrollingBehavior = .continuous
+        section.interGroupSpacing = 8
+        
+        let headerSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1),
+            heightDimension: .estimated(30))
+        let header = NSCollectionLayoutBoundarySupplementaryItem(
+            layoutSize: headerSize,
+            elementKind: UICollectionView.elementKindSectionHeader,
+            alignment: .top)
+        section.boundarySupplementaryItems = [header]
+        
+        return section
+    }
+ 
+    func createLayout() -> UICollectionViewLayout {
+        let layout = UICollectionViewCompositionalLayout{ index, environment in
+            if index == 0 {
+                self.createHeroSection()
+            } else {
+                self.createMovieSection()
+            }
+        }
+        return layout
+    }
+}
