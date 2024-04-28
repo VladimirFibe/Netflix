@@ -18,7 +18,18 @@ enum APIRoute {
         case ruRu = "ru-RU"
     }
     
-    case getPopular(language: Language, page: Int, region: String?)
+    enum Region: String {
+        case ru = "RU"
+        case en = "EN"
+    }
+    enum MovieType: String {
+        case popular
+        case upcoming
+        case top = "top_rated"
+        case plaing = "now_playing"
+    }
+    
+    case getPopular(type: MovieType, language: Language, page: Int, region: Region?)
     case getTrending(mediaType: MediaType, time: TimeWindow, language: Language)
     
     var baseUrl: String {
@@ -27,7 +38,7 @@ enum APIRoute {
     
     var fullUrl: String {
         switch self {
-        case .getPopular: return "\(baseUrl)3/movie/popular"
+        case .getPopular(let type, _, _, _): return "\(baseUrl)3/movie/\(type)"
         case .getTrending(let mediaType, let time, _):
             return "\(baseUrl)3/trending/\(mediaType.rawValue)/\(time.rawValue)"
         }
@@ -35,10 +46,10 @@ enum APIRoute {
     
     var queryItems: [URLQueryItem] {
         switch self {
-        case .getPopular(let lang, let page, let region):
+        case .getPopular(_, let lang, let page, let region):
             var items = [URLQueryItem(name: "language", value: lang.rawValue),
                          URLQueryItem(name: "page", value: "\(page)")]
-            if let region { items.append(URLQueryItem(name: "region", value: region))}
+            if let region { items.append(URLQueryItem(name: "region", value: region.rawValue))}
             return items
         case .getTrending(_, _, let lang):
             return [URLQueryItem(name: "language", value: lang.rawValue)]

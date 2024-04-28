@@ -71,6 +71,7 @@ final class HomeHeroCell: BaseCollectionViewCell, SelfConfiguringMovieCell {
         [addButton, playButton, infoButton].forEach {
             bottomStackView.addArrangedSubview($0)
         }
+        addGradient()
     }
     
     private func addGradient() {
@@ -97,11 +98,6 @@ final class HomeHeroCell: BaseCollectionViewCell, SelfConfiguringMovieCell {
             playButton.heightAnchor.constraint(equalToConstant: 30),
             playButton.widthAnchor.constraint(equalToConstant: 87)
         ])
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        addGradient()
     }
 }
 

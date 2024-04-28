@@ -51,7 +51,7 @@ extension APIClent: HomeServiceProtocol {
     }
     
     func getPopular() async throws -> [Movie] {
-        let response: MovieResponse = try await request(.getPopular(language: .ruRu, page: 1, region: "RU"))
+        let response: MovieResponse = try await request(.getPopular(type: .popular, language: .ruRu, page: 1, region: .ru))
         return response.results
     }
 }
