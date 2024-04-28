@@ -11,7 +11,7 @@ class HomeViewController: BaseViewController {
     
     private var dataSource: DataSource!
     private var collectionView: UICollectionView!
-    private let useCase = HomeUseCase(apiService: APIClent.shared)
+    private let useCase = HomeUseCase(apiService: HomeService.shared)
     private lazy var store = HomeStore(useCase: useCase)
     private var homeData = HomeData()
 }
