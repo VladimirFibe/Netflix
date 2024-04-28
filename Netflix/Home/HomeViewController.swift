@@ -1,7 +1,6 @@
 import UIKit
 
-
-class HomeViewController: UIViewController {
+class HomeViewController: BaseViewController {
     enum Section: Int, CaseIterable {
         case hero
         case movie
@@ -12,26 +11,32 @@ class HomeViewController: UIViewController {
     
     private var dataSource: DataSource!
     private var collectionView: UICollectionView!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    private var store = HomeStore()
+    private var homeData = HomeData()
+}
+//MARK: - Setup Views
+extension HomeViewController {
+    override func setupViews() {
+        super.setupViews()
         setupCollectionView()
         createDataSource()
+        store.sendAction(.fetch)
         reloadData()
-        Task {
-            do {
-                let response: MovieResponse = try await APIClent.shared.request(.getPopular(language: "ru-RU", page: 1, region: "RU"))
-                response.results.forEach {
-                    print("DEBUG: ", $0.title)
-                }
-            } catch {
-                print("DEBUG: ", error.localizedDescription)
-            }
-        }
     }
-}
-
-extension HomeViewController {
+    
+    override func setupObservers() {
+        store
+            .events
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] event in
+                guard let self = self else { return }
+                switch event {
+                case let .didLoad(data):
+                    self.homeData = data
+                    self.reloadData()
+                }
+            }.store(in: &bag)
+    }
     private func setupCollectionView() {
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createLayout())
         collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -67,16 +72,16 @@ extension HomeViewController {
     }
     
     private func reloadData() {
-        var movies = Bundle.main.decode([Movie].self, from: "Movies.json")
-        let hero = [movies.removeFirst()]
-        var snapshot = Snapshot()
-        snapshot.appendSections(Section.allCases)
-        snapshot.appendItems(hero, toSection: .hero)
-        snapshot.appendItems(movies, toSection: .movie)
-        dataSource.apply(snapshot)
+        if let hero = homeData.hero {
+            var snapshot = Snapshot()
+            snapshot.appendSections(Section.allCases)
+            snapshot.appendItems([hero], toSection: .hero)
+            snapshot.appendItems(homeData.movies, toSection: .movie)
+            dataSource.apply(snapshot)
+        }
     }
 }
-
+//MARK: - Create Layout
 extension HomeViewController {
     private func createHeroSection() -> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(

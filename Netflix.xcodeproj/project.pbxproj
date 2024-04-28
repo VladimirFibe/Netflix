@@ -39,6 +39,7 @@
 		E8BAD5952BDD0659009F480A /* NetflixSans-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = E8BAD5912BDD0659009F480A /* NetflixSans-Bold.otf */; };
 		E8BAD5962BDD0659009F480A /* NetflixSans-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = E8BAD5922BDD0659009F480A /* NetflixSans-Light.otf */; };
 		E8BAD5972BDD0659009F480A /* NetflixSans-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = E8BAD5932BDD0659009F480A /* NetflixSans-Medium.otf */; };
+		E8F4CE722BDDEEED0087871F /* HomeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F4CE712BDDEEED0087871F /* HomeData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,6 +79,7 @@
 		E8BAD5912BDD0659009F480A /* NetflixSans-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NetflixSans-Bold.otf"; sourceTree = "<group>"; };
 		E8BAD5922BDD0659009F480A /* NetflixSans-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NetflixSans-Light.otf"; sourceTree = "<group>"; };
 		E8BAD5932BDD0659009F480A /* NetflixSans-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NetflixSans-Medium.otf"; sourceTree = "<group>"; };
+		E8F4CE712BDDEEED0087871F /* HomeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,11 +117,9 @@
 			children = (
 				27BD367129D501D900A548E6 /* App */,
 				E88DC6DE2BD57CCD0019FC89 /* Model */,
+				E8F4CE702BDDEC9B0087871F /* API */,
 				E88DC6D02BD566960019FC89 /* Home */,
 				27BD367029D501CE00A548E6 /* Supporting Files */,
-				E863F4752BDD5EF900DC2AEC /* APIError.swift */,
-				E863F4772BDD5F2300DC2AEC /* APIClent.swift */,
-				E863F4792BDD5F2E00DC2AEC /* APIRoute.swift */,
 			);
 			path = Netflix;
 			sourceTree = "<group>";
@@ -128,13 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				E8100B922BD45D0D00F60149 /* Store.swift */,
-				E8AC93462BD662320003C470 /* HomeHeroCell.swift */,
-				E8AC934C2BD686280003C470 /* HomeMovieCell.swift */,
-				E8AC93502BD68CC30003C470 /* HomeSectionHeader.swift */,
-				E88DC6D52BD568870019FC89 /* HomeStore.swift */,
 				E88DC6D72BD56B8C0019FC89 /* Base */,
-				E88DC6DC2BD56ED80019FC89 /* HomeService.swift */,
-				E88DC6DA2BD56E2F0019FC89 /* HomeUseCase.swift */,
 				27BD365629D4565700A548E6 /* Assets.xcassets */,
 				27BD365829D4565700A548E6 /* LaunchScreen.storyboard */,
 				27BD365B29D4565700A548E6 /* Info.plist */,
@@ -170,6 +164,12 @@
 			isa = PBXGroup;
 			children = (
 				E88DC6D12BD566B20019FC89 /* HomeViewController.swift */,
+				E8AC93502BD68CC30003C470 /* HomeSectionHeader.swift */,
+				E8AC93462BD662320003C470 /* HomeHeroCell.swift */,
+				E8AC934C2BD686280003C470 /* HomeMovieCell.swift */,
+				E88DC6DA2BD56E2F0019FC89 /* HomeUseCase.swift */,
+				E88DC6D52BD568870019FC89 /* HomeStore.swift */,
+				E88DC6DC2BD56ED80019FC89 /* HomeService.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -188,6 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				E88DC6DF2BD57CD70019FC89 /* Movie.swift */,
+				E8F4CE712BDDEEED0087871F /* HomeData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -227,6 +228,16 @@
 				E8BAD5902BDD0659009F480A /* NetflixSans-Regular.otf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		E8F4CE702BDDEC9B0087871F /* API */ = {
+			isa = PBXGroup;
+			children = (
+				E863F4752BDD5EF900DC2AEC /* APIError.swift */,
+				E863F4772BDD5F2300DC2AEC /* APIClent.swift */,
+				E863F4792BDD5F2E00DC2AEC /* APIRoute.swift */,
+			);
+			path = API;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -330,6 +341,7 @@
 				E8BAD58F2BDD05E3009F480A /* AppFont.swift in Sources */,
 				E863F4782BDD5F2300DC2AEC /* APIClent.swift in Sources */,
 				E8AC934D2BD686280003C470 /* HomeMovieCell.swift in Sources */,
+				E8F4CE722BDDEEED0087871F /* HomeData.swift in Sources */,
 				E88DC6DB2BD56E2F0019FC89 /* HomeUseCase.swift in Sources */,
 				2754F08029D975E300C03FFD /* Netflix.xcdatamodeld in Sources */,
 				E863F4762BDD5EF900DC2AEC /* APIError.swift in Sources */,
