@@ -18,12 +18,22 @@ class HomeViewController: BaseViewController {
 
 //MARK: - Setup Views
 extension HomeViewController {
+    
     override func setupViews() {
         super.setupViews()
         setupCollectionView()
         createDataSource()
         store.sendAction(.fetch)
         reloadData()
+        setupNavBar()
+    }
+    
+    private func setupNavBar() {
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: .logoNetflix, style: .done, target: self, action: nil)
+        navigationItem.rightBarButtonItems = [
+            UIBarButtonItem(image: .navbarAccount, style: .done, target: self, action: nil),
+            UIBarButtonItem(image: .navbarFeatured, style: .done, target: self, action: nil)
+        ]
     }
     
     override func setupObservers() {
@@ -41,6 +51,7 @@ extension HomeViewController {
     }
     private func setupCollectionView() {
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createLayout())
+        collectionView.delegate = self
         collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         view.addSubview(collectionView)
     }
@@ -133,5 +144,13 @@ extension HomeViewController {
             case .movie: return self.createMovieSection()            }
          }
         return layout
+    }
+}
+
+extension HomeViewController: UICollectionViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let defaultOffset = view.safeAreaInsets.top
+        let offset = scrollView.contentOffset.y + defaultOffset
+        navigationController?.navigationBar.transform = .init(translationX: 0, y: min(0, -offset))
     }
 }

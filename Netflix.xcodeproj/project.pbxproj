@@ -26,12 +26,10 @@
 		E88DC6E22BD57EDF0019FC89 /* Movies.json in Resources */ = {isa = PBXBuildFile; fileRef = E88DC6E12BD57EDF0019FC89 /* Movies.json */; };
 		E88DC6E42BD57F3F0019FC89 /* Bundle+Decoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E88DC6E32BD57F3F0019FC89 /* Bundle+Decoder.swift */; };
 		E89C433C2BD8DB040011CD89 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89C433B2BD8DB040011CD89 /* MainTabBarController.swift */; };
-		E8AC93412BD6499B0003C470 /* 01.png in Resources */ = {isa = PBXBuildFile; fileRef = E8AC93402BD6499B0003C470 /* 01.png */; };
 		E8AC93432BD660DF0003C470 /* SelfConfiguringMovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8AC93422BD660DF0003C470 /* SelfConfiguringMovieCell.swift */; };
 		E8AC93452BD661E50003C470 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8AC93442BD661E50003C470 /* BaseCollectionViewCell.swift */; };
 		E8AC93472BD662320003C470 /* HomeHeroCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8AC93462BD662320003C470 /* HomeHeroCell.swift */; };
 		E8AC93492BD666820003C470 /* FileStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8AC93482BD666820003C470 /* FileStorage.swift */; };
-		E8AC934B2BD677BA0003C470 /* 02.png in Resources */ = {isa = PBXBuildFile; fileRef = E8AC934A2BD677BA0003C470 /* 02.png */; };
 		E8AC934D2BD686280003C470 /* HomeMovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8AC934C2BD686280003C470 /* HomeMovieCell.swift */; };
 		E8AC934F2BD68C740003C470 /* BaseCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8AC934E2BD68C740003C470 /* BaseCollectionReusableView.swift */; };
 		E8AC93512BD68CC30003C470 /* HomeSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8AC93502BD68CC30003C470 /* HomeSectionHeader.swift */; };
@@ -58,7 +56,6 @@
 		E863F4772BDD5F2300DC2AEC /* APIClent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClent.swift; sourceTree = "<group>"; };
 		E863F4792BDD5F2E00DC2AEC /* APIRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRoute.swift; sourceTree = "<group>"; };
 		E88DC6D12BD566B20019FC89 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		E88DC6D42BD567580019FC89 /* 01.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = 01.md; sourceTree = "<group>"; };
 		E88DC6D52BD568870019FC89 /* HomeStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeStore.swift; sourceTree = "<group>"; };
 		E88DC6D82BD56B9F0019FC89 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		E88DC6DA2BD56E2F0019FC89 /* HomeUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeUseCase.swift; sourceTree = "<group>"; };
@@ -67,12 +64,10 @@
 		E88DC6E12BD57EDF0019FC89 /* Movies.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Movies.json; sourceTree = "<group>"; };
 		E88DC6E32BD57F3F0019FC89 /* Bundle+Decoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Decoder.swift"; sourceTree = "<group>"; };
 		E89C433B2BD8DB040011CD89 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
-		E8AC93402BD6499B0003C470 /* 01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 01.png; sourceTree = "<group>"; };
 		E8AC93422BD660DF0003C470 /* SelfConfiguringMovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfConfiguringMovieCell.swift; sourceTree = "<group>"; };
 		E8AC93442BD661E50003C470 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
 		E8AC93462BD662320003C470 /* HomeHeroCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeHeroCell.swift; sourceTree = "<group>"; };
 		E8AC93482BD666820003C470 /* FileStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileStorage.swift; sourceTree = "<group>"; };
-		E8AC934A2BD677BA0003C470 /* 02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 02.png; sourceTree = "<group>"; };
 		E8AC934C2BD686280003C470 /* HomeMovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMovieCell.swift; sourceTree = "<group>"; };
 		E8AC934E2BD68C740003C470 /* BaseCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionReusableView.swift; sourceTree = "<group>"; };
 		E8AC93502BD68CC30003C470 /* HomeSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSectionHeader.swift; sourceTree = "<group>"; };
@@ -100,7 +95,6 @@
 			children = (
 				27BD366129D458E300A548E6 /* README.md */,
 				E8AC933F2BD649400003C470 /* img */,
-				E8AC933D2BD649200003C470 /* Docs */,
 				27BD364C29D4565500A548E6 /* Netflix */,
 				27BD364B29D4565500A548E6 /* Products */,
 				27F7A67D29D850F20015DE1C /* Frameworks */,
@@ -194,24 +188,6 @@
 				E88DC6DF2BD57CD70019FC89 /* Movie.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		E8AC933D2BD649200003C470 /* Docs */ = {
-			isa = PBXGroup;
-			children = (
-				E8AC93402BD6499B0003C470 /* 01.png */,
-				E8AC934A2BD677BA0003C470 /* 02.png */,
-				E8AC933E2BD649320003C470 /* 01 */,
-			);
-			path = Docs;
-			sourceTree = "<group>";
-		};
-		E8AC933E2BD649320003C470 /* 01 */ = {
-			isa = PBXGroup;
-			children = (
-				E88DC6D42BD567580019FC89 /* 01.md */,
-			);
-			path = 01;
 			sourceTree = "<group>";
 		};
 		E8AC933F2BD649400003C470 /* img */ = {
@@ -308,9 +284,7 @@
 				E83382FC2BDE75E0008C9531 /* 01.png in Resources */,
 				E8BAD5962BDD0659009F480A /* NetflixSans-Light.otf in Resources */,
 				E8BAD5942BDD0659009F480A /* NetflixSans-Regular.otf in Resources */,
-				E8AC934B2BD677BA0003C470 /* 02.png in Resources */,
 				27BD365A29D4565700A548E6 /* LaunchScreen.storyboard in Resources */,
-				E8AC93412BD6499B0003C470 /* 01.png in Resources */,
 				27BD365729D4565700A548E6 /* Assets.xcassets in Resources */,
 				E88DC6E22BD57EDF0019FC89 /* Movies.json in Resources */,
 				E8BAD5952BDD0659009F480A /* NetflixSans-Bold.otf in Resources */,
