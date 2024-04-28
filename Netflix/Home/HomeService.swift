@@ -16,3 +16,10 @@ final class HomeService: HomeServiceProtocol {
         Bundle.main.decode([Movie].self, from: "\(name).json")
     }
 }
+
+extension APIClent: HomeServiceProtocol {
+    func getPopular() async throws -> [Movie] {
+        let response: MovieResponse = try await request(.getPopular(language: "ru-RU", page: 1, region: "RU"))
+        return response.results
+    }
+}
