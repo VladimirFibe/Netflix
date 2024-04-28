@@ -13,6 +13,7 @@
 		27BD365729D4565700A548E6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27BD365629D4565700A548E6 /* Assets.xcassets */; };
 		27BD365A29D4565700A548E6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27BD365829D4565700A548E6 /* LaunchScreen.storyboard */; };
 		E8100B932BD45D0D00F60149 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8100B922BD45D0D00F60149 /* Store.swift */; };
+		E83382FC2BDE75E0008C9531 /* 01.png in Resources */ = {isa = PBXBuildFile; fileRef = E83382FB2BDE75E0008C9531 /* 01.png */; };
 		E863F4762BDD5EF900DC2AEC /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E863F4752BDD5EF900DC2AEC /* APIError.swift */; };
 		E863F4782BDD5F2300DC2AEC /* APIClent.swift in Sources */ = {isa = PBXBuildFile; fileRef = E863F4772BDD5F2300DC2AEC /* APIClent.swift */; };
 		E863F47A2BDD5F2E00DC2AEC /* APIRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = E863F4792BDD5F2E00DC2AEC /* APIRoute.swift */; };
@@ -52,6 +53,7 @@
 		27BD365B29D4565700A548E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		27BD366129D458E300A548E6 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		E8100B922BD45D0D00F60149 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
+		E83382FB2BDE75E0008C9531 /* 01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 01.png; sourceTree = "<group>"; };
 		E863F4752BDD5EF900DC2AEC /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		E863F4772BDD5F2300DC2AEC /* APIClent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClent.swift; sourceTree = "<group>"; };
 		E863F4792BDD5F2E00DC2AEC /* APIRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRoute.swift; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				27BD366129D458E300A548E6 /* README.md */,
+				E8AC933F2BD649400003C470 /* img */,
 				E8AC933D2BD649200003C470 /* Docs */,
 				27BD364C29D4565500A548E6 /* Netflix */,
 				27BD364B29D4565500A548E6 /* Products */,
@@ -196,7 +199,8 @@
 		E8AC933D2BD649200003C470 /* Docs */ = {
 			isa = PBXGroup;
 			children = (
-				E8AC933F2BD649400003C470 /* img */,
+				E8AC93402BD6499B0003C470 /* 01.png */,
+				E8AC934A2BD677BA0003C470 /* 02.png */,
 				E8AC933E2BD649320003C470 /* 01 */,
 			);
 			path = Docs;
@@ -213,8 +217,7 @@
 		E8AC933F2BD649400003C470 /* img */ = {
 			isa = PBXGroup;
 			children = (
-				E8AC93402BD6499B0003C470 /* 01.png */,
-				E8AC934A2BD677BA0003C470 /* 02.png */,
+				E83382FB2BDE75E0008C9531 /* 01.png */,
 			);
 			path = img;
 			sourceTree = "<group>";
@@ -302,6 +305,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E83382FC2BDE75E0008C9531 /* 01.png in Resources */,
 				E8BAD5962BDD0659009F480A /* NetflixSans-Light.otf in Resources */,
 				E8BAD5942BDD0659009F480A /* NetflixSans-Regular.otf in Resources */,
 				E8AC934B2BD677BA0003C470 /* 02.png in Resources */,
