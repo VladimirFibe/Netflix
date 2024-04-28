@@ -4,14 +4,27 @@ class HomeViewController: BaseViewController {
     enum Section: Int, CaseIterable {
         case hero
         case movie
+        case trendingMovie
+        case trendingTV
+        case person
+        
+        var name: String {
+            switch self {
+            case .hero: return ""
+            case .movie:return "Popular Movie"
+            case .trendingMovie:return "Trending Movies"
+            case .trendingTV: return "Trending TV"
+            case .person: return "Popular People"
+            }
+        }
     }
     
-    typealias DataSource = UICollectionViewDiffableDataSource<Section, Movie>
-    typealias Snapshot = NSDiffableDataSourceSnapshot<Section, Movie>
+    typealias DataSource = UICollectionViewDiffableDataSource<Section, HomeItem>
+    typealias Snapshot = NSDiffableDataSourceSnapshot<Section, HomeItem>
     
     private var dataSource: DataSource!
     private var collectionView: UICollectionView!
-    private let useCase = HomeUseCase(apiService: HomeService.shared)
+    private let useCase = HomeUseCase(apiService: APIClent.shared)
     private lazy var store = HomeStore(useCase: useCase)
     private var homeData = HomeData()
 }
@@ -61,21 +74,33 @@ extension HomeViewController {
     }
     
     private func headerRegistrationHandler(view: HomeSectionHeader, kind: String, indexPath: IndexPath) {
-        view.configure(with: "Continue Watching for Ellie")
+        guard let section = Section(rawValue: indexPath.section) else { fatalError() }
+        view.configure(with: section.name)
+    }
+    
+    private func personRegistrationHandler(cell: HomePersonCell, indexPath: IndexPath, person: Person) {
+        cell.configure(with: person)
     }
     
     private func createDataSource() {
         let heroRegistration = UICollectionView.CellRegistration<HomeHeroCell, Movie>(handler: cellRegistrationHandler)
-        
+        let personRegistration = UICollectionView.CellRegistration<HomePersonCell, Person>(handler: personRegistrationHandler)
         let cellRegistration = UICollectionView.CellRegistration<HomeMovieCell, Movie>(handler: cellRegistrationHandler)
         
         let supplementaryRegistration = UICollectionView.SupplementaryRegistration<HomeSectionHeader>(elementKind: UICollectionView.elementKindSectionHeader, handler: headerRegistrationHandler)
         
-        dataSource = DataSource(collectionView: collectionView) { collectionView, indexPath, movie in
-            guard let section = Section(rawValue: indexPath.section) else { fatalError() }
-            switch section {
-            case .hero: return collectionView.dequeueConfiguredReusableCell(using: heroRegistration, for: indexPath, item: movie)
-            case .movie: return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: movie)
+        dataSource = DataSource(collectionView: collectionView) { collectionView, indexPath, item in
+            switch item {
+            case .hero(let movie):
+                return collectionView.dequeueConfiguredReusableCell(using: heroRegistration, for: indexPath, item: movie)
+            case .movie(let movie):
+                return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: movie)
+            case .trendingMovie(let movie):
+                return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: movie)
+            case .trendingTV(let movie):
+                return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: movie)
+            case .person(let person):
+                return collectionView.dequeueConfiguredReusableCell(using: personRegistration, for: indexPath, item: person)
             }
         }
         
@@ -88,8 +113,11 @@ extension HomeViewController {
         if let hero = homeData.hero {
             var snapshot = Snapshot()
             snapshot.appendSections(Section.allCases)
-            snapshot.appendItems([hero], toSection: .hero)
-            snapshot.appendItems(homeData.movies, toSection: .movie)
+            snapshot.appendItems([HomeItem.hero(hero)], toSection: .hero)
+            snapshot.appendItems(homeData.movies.map {HomeItem.movie($0)}, toSection: .movie)
+            snapshot.appendItems(homeData.trendingMovies.map {HomeItem.trendingMovie($0)}, toSection: .trendingMovie)
+            snapshot.appendItems(homeData.trendingTVs.map { HomeItem.trendingTV($0)}, toSection: .trendingTV)
+            snapshot.appendItems(homeData.persons.map { HomeItem.person($0)}, toSection: .person)
             dataSource.apply(snapshot)
         }
     }
@@ -135,13 +163,40 @@ extension HomeViewController {
         
         return section
     }
+    
+    private func createPersonSection() -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                              heightDimension: .fractionalHeight(1.0))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        
+        let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(106),
+                                               heightDimension: .absolute(106))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
+                                                       subitems: [item])
+        let section = NSCollectionLayoutSection(group: group)
+        section.orthogonalScrollingBehavior = .continuous
+        section.interGroupSpacing = 8
+        
+        let headerSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1),
+            heightDimension: .estimated(30))
+        let header = NSCollectionLayoutBoundarySupplementaryItem(
+            layoutSize: headerSize,
+            elementKind: UICollectionView.elementKindSectionHeader,
+            alignment: .top)
+        section.boundarySupplementaryItems = [header]
+        
+        return section
+    }
  
     func createLayout() -> UICollectionViewLayout {
         let layout = UICollectionViewCompositionalLayout{ index, environment in
             guard let section = Section(rawValue: index) else { fatalError() }
             switch section {
             case .hero: return self.createHeroSection()
-            case .movie: return self.createMovieSection()            }
+            case .person: return self.createPersonSection()
+            default: return self.createMovieSection()
+            }
          }
         return layout
     }
