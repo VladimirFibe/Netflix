@@ -9,6 +9,12 @@ enum HomeAction {
 }
 
 final class HomeStore: Store<HomeEvent, HomeAction> {
+    private let useCase: HomeUseCaseProtocol
+    
+    init(useCase: HomeUseCaseProtocol) {
+        self.useCase = useCase
+    }
+    
     override func handleActions(action: HomeAction) {
         switch action {
         case .fetch:
@@ -20,9 +26,7 @@ final class HomeStore: Store<HomeEvent, HomeAction> {
     }
     
     private func fetch() async throws {
-        var movies = Bundle.main.decode([Movie].self, from: "Movies.json")
-        let hero = movies.removeFirst()
-        let homeData = HomeData(hero: hero, movies: movies)
+        let homeData = try await useCase.execute()
         sendEvent(.didLoad(homeData))
     }
 }

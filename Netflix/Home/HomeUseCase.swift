@@ -14,7 +14,8 @@ final class HomeUseCase: HomeUseCaseProtocol {
     
     func execute() async throws -> HomeData {
         var movies = try await apiService.getPopular()
-        let hero = movies.removeFirst()
+        var hero: Movie? = nil
+        if !movies.isEmpty { hero = movies.removeFirst() }
         let homeData = HomeData(hero: hero, movies: movies)
         return homeData
     }

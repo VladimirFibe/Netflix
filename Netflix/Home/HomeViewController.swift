@@ -11,9 +11,11 @@ class HomeViewController: BaseViewController {
     
     private var dataSource: DataSource!
     private var collectionView: UICollectionView!
-    private var store = HomeStore()
+    private let useCase = HomeUseCase(apiService: HomeService.shared)
+    private lazy var store = HomeStore(useCase: useCase)
     private var homeData = HomeData()
 }
+
 //MARK: - Setup Views
 extension HomeViewController {
     override func setupViews() {

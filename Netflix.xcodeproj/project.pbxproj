@@ -164,6 +164,7 @@
 			isa = PBXGroup;
 			children = (
 				E88DC6D12BD566B20019FC89 /* HomeViewController.swift */,
+				E8F4CE712BDDEEED0087871F /* HomeData.swift */,
 				E8AC93502BD68CC30003C470 /* HomeSectionHeader.swift */,
 				E8AC93462BD662320003C470 /* HomeHeroCell.swift */,
 				E8AC934C2BD686280003C470 /* HomeMovieCell.swift */,
@@ -188,7 +189,6 @@
 			isa = PBXGroup;
 			children = (
 				E88DC6DF2BD57CD70019FC89 /* Movie.swift */,
-				E8F4CE712BDDEEED0087871F /* HomeData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";

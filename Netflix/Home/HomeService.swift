@@ -5,6 +5,9 @@ protocol HomeServiceProtocol {
 }
 
 final class HomeService: HomeServiceProtocol {
+    static let shared = HomeService()
+    private init() {}
+    
     func getPopular() async throws -> [Movie] {
         try await getMovies("Movies")
     }
