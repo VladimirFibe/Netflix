@@ -5,7 +5,7 @@ class MainTabBarController: UITabBarController {
         super.viewDidLoad()
 
         let home = UINavigationController(rootViewController: HomeViewController())
-        let upcoming = UINavigationController(rootViewController: UIViewController())
+        let upcoming = UINavigationController(rootViewController: UpcomingViewController())
         let fast = UINavigationController(rootViewController: BaseViewController())
         let search = UINavigationController(rootViewController: UIViewController())
         let downloads = UINavigationController(rootViewController: UIViewController())

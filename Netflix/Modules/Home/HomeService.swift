@@ -36,7 +36,6 @@ final class HomeService: HomeServiceProtocol {
 extension APIClent: HomeServiceProtocol {
     func getTrendingPerson() async throws -> [Person] {
         let response: PersonResponse = try await request(.getTrending(mediaType: .person, time: .day, language: .ruRu))
-        response.results.forEach { print("DEBUG: ", $0.profileUrl)}
         return response.results
     }
     
@@ -51,7 +50,7 @@ extension APIClent: HomeServiceProtocol {
     }
     
     func getPopular() async throws -> [Movie] {
-        let response: MovieResponse = try await request(.getPopular(type: .popular, language: .ruRu, page: 1, region: .ru))
+        let response: MovieResponse = try await request(.getPopular(type: .upcoming, language: .ruRu, page: 1, region: .ru))
         return response.results
     }
 }
